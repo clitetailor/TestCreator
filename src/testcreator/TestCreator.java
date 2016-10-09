@@ -19,7 +19,7 @@ public class TestCreator extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("AppComponent.fxml"));
         
         Scene scene = new Scene(root);
         
