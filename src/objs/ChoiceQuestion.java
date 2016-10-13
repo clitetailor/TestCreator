@@ -13,5 +13,23 @@ import java.util.ArrayList;
  */
 public class ChoiceQuestion extends Question
 {
-    ArrayList<ChoiceAnswer> answers;
+    private ArrayList<ChoiceAnswer> answers;
+
+    
+
+    public ChoiceQuestion() {
+        this.answers = new ArrayList<>();
+    }
+
+    public ChoiceQuestion(ArrayList<ChoiceAnswer> answers) {
+        this.answers = answers;
+    }
+
+    public ArrayList<ChoiceAnswer> getAnswers() {
+        return answers;
+    }
+    
+    public void setAnswers(ArrayList<ChoiceAnswer> answers) {
+        this.answers = answers;
+    }
 }

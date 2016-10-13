@@ -11,9 +11,40 @@ package objs;
  */
 public abstract class Question
 {
-    int id;
-    String content;
-    
-    String subject;
-    int level;
+    private int id;
+    private String content;
+    private String subject;
+    private int level;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
 }
