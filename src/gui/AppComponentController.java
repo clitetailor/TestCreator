@@ -13,10 +13,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import static javafx.scene.AccessibleAttribute.MAX_VALUE;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -41,10 +43,7 @@ public class AppComponentController implements Initializable
 	GridPane questionForm = new GridPane();
 	
 	questionForm.setAlignment(Pos.CENTER);
-	questionForm.setHgap(8);
 	questionForm.setVgap(8);
-	
-	questionForm.setPadding(new Insets(25, 25, 25, 25));
 	
 	Label questionLabel = new Label("Question");
 	TextArea questionInput = new TextArea();
