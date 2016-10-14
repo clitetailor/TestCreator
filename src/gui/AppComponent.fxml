@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" stylesheets="@AppComponent.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AppComponentController">
+   <children>
+      <Button fx:id="addButton" layoutX="283.0" layoutY="345.0" mnemonicParsing="false" onAction="#onAddButtonClick" text="Add" />
+      <ScrollPane layoutX="18.0" layoutY="27.0" prefHeight="281.0" prefWidth="567.0">
+         <content>
+            <VBox fx:id="questionList" maxHeight="-Infinity" maxWidth="-Infinity" />
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>
