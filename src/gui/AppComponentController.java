@@ -15,12 +15,14 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import static javafx.scene.AccessibleAttribute.MAX_VALUE;
 import javafx.scene.control.Button;
+import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
@@ -33,27 +35,37 @@ public class AppComponentController implements Initializable
 {
     @FXML
     Button addButton;
-    
+
     @FXML
     VBox questionList;
-    
+
     @FXML
     void onAddButtonClick()
     {
 	GridPane questionForm = new GridPane();
-	
+
 	questionForm.setAlignment(Pos.CENTER);
 	questionForm.setVgap(8);
-	
+	questionForm.setHgap(8);
+
 	Label questionLabel = new Label("Question");
 	TextArea questionInput = new TextArea();
+	questionInput.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+	questionInput.setPrefHeight(50);
+	questionInput.setMinHeight(Control.USE_PREF_SIZE);
 	
 	Label answerLabel = new Label("Answers");
 	TextArea answerInput = new TextArea();
-	
+	answerInput.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+	answerInput.setPrefHeight(50);
+	answerInput.setMinHeight(Control.USE_PREF_SIZE);
+
 	Label descriptionLabel = new Label("Description");
 	TextArea descriptionInput = new TextArea();
-	
+	descriptionInput.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+	descriptionInput.setPrefHeight(50);
+	descriptionInput.setMinHeight(Control.USE_PREF_SIZE);
+
 	questionForm.add(questionLabel, 0, 0);
 	questionForm.add(questionInput, 0, 1);
 	questionForm.add(answerLabel, 0, 2);
@@ -62,7 +74,7 @@ public class AppComponentController implements Initializable
 	questionForm.add(descriptionInput, 0, 5);
 	questionList.getChildren().add(questionForm);
     }
-    
+
     /**
      * Initializes the controller class.
      */
@@ -70,6 +82,6 @@ public class AppComponentController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
 	// TODO
-    }    
-    
+    }
+
 }
