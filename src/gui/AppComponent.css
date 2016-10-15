@@ -5,3 +5,51 @@
 .mainFxmlClass {
 
 }
+
+
+.noBorder {
+    -fx-border-width: 0;
+}
+
+.activityBar {
+    -fx-background-color: #222;
+}
+
+    .activityButton {
+        -fx-background-color: none;
+        -fx-background-radius: 0;
+        -fx-text-fill: #ddd;
+        -fx-border-width: 0 0 1px 0;
+        -fx-border-color: #444;
+        -fx-font-style: italic;
+        -fx-font-family: "Times New Roman";
+        -fx-font-size: 11px;
+    }
+
+    .activityButton:hover {
+        -fx-background-color: lightseagreen;
+        -fx-text-fill: #222;
+    }
+
+
+.sideNav {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 5, 0, 2, 0);
+    -fx-background-color: #666;
+}
+
+.primarySplitPane > .split-pane-divider {  
+    -fx-background-color: none;
+    -fx-padding: 0 1px 0 0;
+}
+
+    .circleMaterialButton {
+        -fx-background-radius: 50%;
+        -fx-background-color: dodgerblue;
+        -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 5, 0, 0, 2);
+        -fx-text-fill: #ddd;
+    }
+
+    .circleMaterialButton:hover {
+        -fx-background-color: white;
+        -fx-text-fill: #666;
+    }

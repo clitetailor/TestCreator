@@ -57,7 +57,7 @@ public class AppComponentController implements Initializable
 	Label answerLabel = new Label("Answers");
 	TextArea answerInput = new TextArea();
 	answerInput.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-	answerInput.setPrefHeight(50);
+	answerInput.setPrefHeight(80);
 	answerInput.setMinHeight(Control.USE_PREF_SIZE);
 
 	Label descriptionLabel = new Label("Description");

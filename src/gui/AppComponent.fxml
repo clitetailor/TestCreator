@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Menu?>
@@ -9,7 +10,10 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="532.0" prefWidth="935.0" styleClass="mainFxmlClass" stylesheets="@AppComponent.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AppComponentController">
    <children>
@@ -36,32 +40,52 @@
           </Menu>
         </menus>
       </MenuBar>
-      <HBox layoutX="111.0" layoutY="100.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+      <HBox layoutX="111.0" layoutY="100.0" prefHeight="100.0" prefWidth="200.0" styleClass="noBorder" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
          <children>
-            <VBox prefHeight="200.0" prefWidth="56.0" />
-            <SplitPane dividerPositions="0.29797979797979796" prefHeight="160.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+            <VBox prefHeight="200.0" prefWidth="56.0">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="56.0" prefWidth="56.0" styleClass="activityButton" text="Search" textAlignment="CENTER" wrapText="true" />
+                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="56.0" styleClass="activityButton" text="Choice Question" textAlignment="CENTER" wrapText="true" />
+                  <Button layoutX="10.0" layoutY="66.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="56.0" styleClass="activityButton" text="Essay Question" textAlignment="CENTER" wrapText="true" />
+               </children>
+               <styleClass>
+                  <String fx:value="activityBar" />
+                  <String fx:value="noBorder" />
+               </styleClass></VBox>
+            <SplitPane dividerPositions="0.4692132269099202" prefHeight="160.0" prefWidth="200.0" styleClass="primarySplitPane" HBox.hgrow="ALWAYS">
               <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                <AnchorPane minWidth="0.0" prefHeight="505.0" prefWidth="409.0" styleClass="noBorder">
                      <children>
-                        <VBox alignment="TOP_CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <Pane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <styleClass>
+                              <String fx:value="sideNav" />
+                              <String fx:value="noBorder" />
+                           </styleClass>
+                        </Pane>
+                     </children></AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="noBorder">
+                     <children>
+                        <StackPane alignment="TOP_LEFT" layoutX="-2.0" layoutY="-1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <ScrollPane hbarPolicy="NEVER" prefHeight="294.0" prefWidth="377.0" VBox.vgrow="ALWAYS">
+                              <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" styleClass="noBorder">
                                  <content>
-                                    <VBox fx:id="questionList" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="443.0" prefWidth="611.0" spacing="50.0">
+                                    <VBox fx:id="questionList" spacing="50.0">
                                        <padding>
                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                        </padding>
                                     </VBox>
                                  </content>
                               </ScrollPane>
-                              <Button fx:id="addButton" alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#onAddButtonClick" text="Add" textAlignment="CENTER" VBox.vgrow="SOMETIMES">
-                                 <VBox.margin>
-                                    <Insets bottom="18.0" left="18.0" right="18.0" top="18.0" />
-                                 </VBox.margin>
+                              <Button fx:id="addButton" alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#onAddButtonClick" prefHeight="56.0" prefWidth="56.0" styleClass="circleMaterialButton" text="+" textAlignment="CENTER" wrapText="true" StackPane.alignment="BOTTOM_RIGHT">
+                                 <StackPane.margin>
+                                    <Insets bottom="48.0" right="48.0" />
+                                 </StackPane.margin>
+                                 <font>
+                                    <Font name="Arial" size="30.0" />
+                                 </font>
                               </Button>
                            </children>
-                        </VBox>
+                        </StackPane>
                      </children>
                   </AnchorPane>
               </items>
