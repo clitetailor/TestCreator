@@ -54,16 +54,11 @@
                </styleClass></VBox>
             <SplitPane dividerPositions="0.4692132269099202" prefHeight="160.0" prefWidth="200.0" styleClass="primarySplitPane" HBox.hgrow="ALWAYS">
               <items>
-                <AnchorPane minWidth="0.0" prefHeight="505.0" prefWidth="409.0" styleClass="noBorder">
+                <AnchorPane minWidth="0.0" prefHeight="505.0" prefWidth="409.0">
                      <children>
-                        <Pane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <styleClass>
-                              <String fx:value="sideNav" />
-                              <String fx:value="noBorder" />
-                           </styleClass>
-                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sideNav" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children></AnchorPane>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="noBorder">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
                         <StackPane alignment="TOP_LEFT" layoutX="-2.0" layoutY="-1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>

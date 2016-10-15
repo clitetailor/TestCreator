@@ -37,6 +37,12 @@
     -fx-background-color: #666;
 }
 
+.primarySplitPane {
+    -fx-box-border: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
 .primarySplitPane > .split-pane-divider {  
     -fx-background-color: none;
     -fx-padding: 0 1px 0 0;
