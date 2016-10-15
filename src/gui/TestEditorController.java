@@ -27,13 +27,6 @@ import javafx.scene.layout.VBox;
  */
 public class TestEditorController implements Initializable
 {
-//    public TestEditorController() throws IOException {
-//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("TestEditor.fxml"));
-//        fxmlLoader.setRoot(this);
-//        fxmlLoader.setController(this);
-//
-//        fxmlLoader.load();
-//    }
     
     @FXML
     Button addButton;

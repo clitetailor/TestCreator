@@ -26,8 +26,9 @@
 }
 
 .primaryButton:hover {
-    -fx-background-color: deepskyblue;
-    -fx-border-color: deepskyblue;
-    -fx-effect: dropshadow(gaussian, rgba(0, 191, 255, 0.8), 5, 0, 0, 0);
+    -fx-background-color: orange;
+    -fx-border-color: orange;
+    -fx-text-fill: orange;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 5, 0, 0, 0);
     -fx-text-fill: #333;
 }

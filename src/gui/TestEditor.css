@@ -89,6 +89,10 @@
         -fx-text-fill: #222;
         -fx-border-color: deepskyblue;
     }
+    
+    .activityButtonLast {
+        -fx-border-width: 1 0 0 0;
+    }
 
 
 .sideNav {
