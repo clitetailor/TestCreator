@@ -5,9 +5,11 @@
  */
 package gui;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -15,6 +17,7 @@ import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 /**
@@ -22,8 +25,16 @@ import javafx.scene.layout.VBox;
  *
  * @author ducnh
  */
-public class TestEditorController 
+public class TestEditorController implements Initializable
 {
+//    public TestEditorController() throws IOException {
+//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("TestEditor.fxml"));
+//        fxmlLoader.setRoot(this);
+//        fxmlLoader.setController(this);
+//
+//        fxmlLoader.load();
+//    }
+    
     @FXML
     Button addButton;
 
@@ -68,13 +79,9 @@ public class TestEditorController
 	questionList.getChildren().add(questionForm);
     }
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
 	// TODO
     }
-
 }

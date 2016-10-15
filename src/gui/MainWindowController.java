@@ -11,7 +11,11 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
 
 /**
  * FXML Controller class
@@ -26,8 +30,11 @@ public class MainWindowController implements Initializable
     @FXML
     void onNewButtonClick() throws IOException
     {
+	Node testEditor = FXMLLoader.load(getClass().getResource("TestEditor.fxml"));
+	HBox.setHgrow(testEditor, Priority.ALWAYS);
+	
 	mainPane.getChildren().clear();
-	mainPane.getChildren().add(FXMLLoader.load(getClass().getResource("TestEditor.fxml")));
+	mainPane.getChildren().add(testEditor);
     }
     /**
      * Initializes the controller class.
