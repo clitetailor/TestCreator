@@ -15,9 +15,62 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="532.0" prefWidth="935.0" styleClass="mainFxmlClass" stylesheets="@AppComponent.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AppComponentController">
+<AnchorPane id="AnchorPane" prefHeight="784.0" prefWidth="1259.0" styleClass="mainFxmlClass" stylesheets="@AppComponent.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AppComponentController">
    <children>
-      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="552.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <StackPane layoutX="-3.0" layoutY="-5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0" styleClass="noBorder">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="56.0">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="56.0" prefWidth="56.0" styleClass="activityButton" text="Search" textAlignment="CENTER" wrapText="true" />
+                        <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="56.0" styleClass="activityButton" text="Choice Question" textAlignment="CENTER" wrapText="true" />
+                        <Button layoutX="10.0" layoutY="66.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="56.0" styleClass="activityButton" text="Essay Question" textAlignment="CENTER" wrapText="true" />
+                     </children>
+                     <styleClass>
+                        <String fx:value="activityBar" />
+                        <String fx:value="noBorder" />
+                     </styleClass>
+                  </VBox>
+                  <SplitPane dividerPositions="0.4692132269099202" prefHeight="160.0" prefWidth="200.0" styleClass="primarySplitPane" HBox.hgrow="ALWAYS">
+                    <items>
+                      <AnchorPane minWidth="0.0" prefHeight="505.0" prefWidth="409.0">
+                           <children>
+                              <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sideNav" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                           <children>
+                              <StackPane alignment="TOP_LEFT" layoutX="-2.0" layoutY="-1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" styleClass="scrollPane">
+                                       <content>
+                                          <VBox fx:id="questionList" prefHeight="815.0" prefWidth="636.0" spacing="50.0">
+                                             <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </padding>
+                                          </VBox>
+                                       </content>
+                                    </ScrollPane>
+                                    <Button fx:id="addButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#onAddButtonClick" prefHeight="58.0" prefWidth="58.0" styleClass="circleMaterialButton" text="+" textAlignment="CENTER" wrapText="true" StackPane.alignment="BOTTOM_RIGHT">
+                                       <StackPane.margin>
+                                          <Insets bottom="48.0" right="48.0" />
+                                       </StackPane.margin>
+                                       <font>
+                                          <Font name="Arial" size="30.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </StackPane>
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </children>
+            </HBox>
+         </children>
+      </StackPane>
+      <MenuBar minHeight="-Infinity" prefHeight="25.0" prefWidth="552.0" styleClass="menuBar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
@@ -40,52 +93,5 @@
           </Menu>
         </menus>
       </MenuBar>
-      <HBox layoutX="111.0" layoutY="100.0" prefHeight="100.0" prefWidth="200.0" styleClass="noBorder" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
-         <children>
-            <VBox prefHeight="200.0" prefWidth="56.0">
-               <children>
-                  <Button mnemonicParsing="false" prefHeight="56.0" prefWidth="56.0" styleClass="activityButton" text="Search" textAlignment="CENTER" wrapText="true" />
-                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="56.0" styleClass="activityButton" text="Choice Question" textAlignment="CENTER" wrapText="true" />
-                  <Button layoutX="10.0" layoutY="66.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="56.0" styleClass="activityButton" text="Essay Question" textAlignment="CENTER" wrapText="true" />
-               </children>
-               <styleClass>
-                  <String fx:value="activityBar" />
-                  <String fx:value="noBorder" />
-               </styleClass></VBox>
-            <SplitPane dividerPositions="0.4692132269099202" prefHeight="160.0" prefWidth="200.0" styleClass="primarySplitPane" HBox.hgrow="ALWAYS">
-              <items>
-                <AnchorPane minWidth="0.0" prefHeight="505.0" prefWidth="409.0">
-                     <children>
-                        <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sideNav" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children></AnchorPane>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                     <children>
-                        <StackPane alignment="TOP_LEFT" layoutX="-2.0" layoutY="-1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <children>
-                              <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" styleClass="noBorder">
-                                 <content>
-                                    <VBox fx:id="questionList" spacing="50.0">
-                                       <padding>
-                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                       </padding>
-                                    </VBox>
-                                 </content>
-                              </ScrollPane>
-                              <Button fx:id="addButton" alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#onAddButtonClick" prefHeight="56.0" prefWidth="56.0" styleClass="circleMaterialButton" text="+" textAlignment="CENTER" wrapText="true" StackPane.alignment="BOTTOM_RIGHT">
-                                 <StackPane.margin>
-                                    <Insets bottom="48.0" right="48.0" />
-                                 </StackPane.margin>
-                                 <font>
-                                    <Font name="Arial" size="30.0" />
-                                 </font>
-                              </Button>
-                           </children>
-                        </StackPane>
-                     </children>
-                  </AnchorPane>
-              </items>
-            </SplitPane>
-         </children>
-      </HBox>
    </children>
 </AnchorPane>
