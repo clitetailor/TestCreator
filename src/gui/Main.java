@@ -19,7 +19,7 @@ public class Main extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("AppComponent.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
         
         Scene scene = new Scene(root);
         

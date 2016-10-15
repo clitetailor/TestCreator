@@ -5,9 +5,11 @@
  */
 package gui;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.Pane;
 
@@ -20,8 +22,17 @@ public class MainWindowController implements Initializable
 {
     @FXML
     Pane mainPane;
+    
+    @FXML
+    void onNewButtonClick() throws IOException
+    {
+	mainPane.getChildren().clear();
+	mainPane.getChildren().add(FXMLLoader.load(getClass().getResource("TestEditor.fxml")));
+    }
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb)
