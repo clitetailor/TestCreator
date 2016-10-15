@@ -2,15 +2,11 @@
  * Empty Stylesheet file.
  */
 
-.mainFxmlClass {
-
-}
-
 
 .circleMaterialButton {
     -fx-background-radius: 50%;
     -fx-border-radius: 50%;
-    -fx-background-color: tomato;
+    -fx-background-color: orange;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 5, 0, 0, 2);
     -fx-text-fill: white;
 }
@@ -46,8 +42,9 @@
     }
     
     .scrollPane > .scroll-bar > .thumb {
-        -fx-background-color: dodgerblue;
-        -fx-background-radius: 4;
+        -fx-background-color: #888;
+        -fx-background-radius: 0;
+        -fx-background-insets: 1;
     }
     
     .scrollPane > .scroll-bar > .decrement-button,
@@ -58,7 +55,7 @@
     .scrollPane > .scroll-bar > .decrement-button > .decrement-arrow,
     .scrollPane > .scroll-bar > .increment-button > .increment-arrow {
         -fx-shape: null;
-        -fx-padding: 4;
+        -fx-padding: 2;
         -fx-background-color: transparent;
     }
 
@@ -68,13 +65,13 @@
 
 .menuBar {
     -fx-background-color: white;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 5, 0, 2, 0);
-    -fx-border-width: 0 0 1 0;
 }
 
 
 .activityBar {
     -fx-background-color: #222;
+    -fx-border-width: 0 1 0 0;
+    -fx-border-color: #444;
 }
 
     .activityButton {
@@ -84,8 +81,8 @@
         -fx-border-width: 0 0 1 0;
         -fx-border-color: #444;
         -fx-font-style: italic;
-        -fx-font-family: "Times New Roman";
-        -fx-font-size: 11px;
+        -fx-font-family: "Arial";
+        -fx-font-size: 11;
         -fx-padding: 0;
         -fx-background-insets: 0;
     }
@@ -99,7 +96,7 @@
 
 .sideNav {
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 5, 0, 2, 0);
-    -fx-background-color: #666;
+    -fx-background-color: #333;
 }
 
 .primarySplitPane {
@@ -111,4 +108,15 @@
     .primarySplitPane > .split-pane-divider {  
         -fx-background-color: transparent;
         -fx-padding: 0 1px 0 0;
+    }
+    
+
+    .questionForm {
+        -fx-background-radius: 5;
+        -fx-padding: 10 20 10 20;
+        -fx-border-radius: 5;
+        -fx-border-color: #ddd;
+        -fx-border-width: 1;
+        -fx-background-color: white;
+        -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 3, 0, 0, 2);
     }

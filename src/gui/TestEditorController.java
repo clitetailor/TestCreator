@@ -31,7 +31,7 @@ import javafx.scene.text.Text;
  *
  * @author ducnh
  */
-public class AppComponentController implements Initializable
+public class TestEditorController implements Initializable
 {
     @FXML
     Button addButton;
@@ -45,8 +45,7 @@ public class AppComponentController implements Initializable
 	GridPane questionForm = new GridPane();
 
 	questionForm.setAlignment(Pos.CENTER);
-	questionForm.setVgap(8);
-	questionForm.setHgap(8);
+	questionForm.setMaxWidth(450);
 
 	Label questionLabel = new Label("Question");
 	TextArea questionInput = new TextArea();
@@ -72,6 +71,9 @@ public class AppComponentController implements Initializable
 	questionForm.add(answerInput, 0, 3);
 	questionForm.add(descriptionLabel, 0, 4);
 	questionForm.add(descriptionInput, 0, 5);
+	
+	questionForm.getStyleClass().add("questionForm");
+	
 	questionList.getChildren().add(questionForm);
     }
 
