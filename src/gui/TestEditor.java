@@ -6,6 +6,10 @@
 package gui;
 
 import java.io.IOException;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -76,5 +80,18 @@ public class TestEditor extends HBox
 	questionForm.getStyleClass().add("questionForm");
 	
 	questionList.getChildren().add(questionForm);
+    }
+    
+    public final ObjectProperty<EventHandler<ActionEvent>> propertyOnCloseButtonClick = new SimpleObjectProperty<EventHandler<ActionEvent>>();
+    
+    public void setOnCloseButtonClick(EventHandler<ActionEvent> handler)
+    {
+	propertyOnCloseButtonClick.set(handler);
+    }
+    
+    @FXML
+    private void onCloseButtonClick(ActionEvent event)
+    {
+	propertyOnCloseButtonClick.get().handle(event);
     }
 }

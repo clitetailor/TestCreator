@@ -6,6 +6,10 @@
 package gui;
 
 import java.io.IOException;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.HBox;
@@ -16,13 +20,7 @@ import javafx.scene.layout.HBox;
  * @author ducnh
  */
 public class WelcomePage extends HBox
-{
-    @FXML
-    void onNewButtonClick()
-    {
-	
-    }
-    
+{   
     
     public WelcomePage() throws IOException
     {
@@ -32,4 +30,28 @@ public class WelcomePage extends HBox
 	loader.load();
     }
     
+    private final ObjectProperty<EventHandler<ActionEvent>> propertyOnNewButtonClick = new SimpleObjectProperty<EventHandler<ActionEvent>>();
+    private final ObjectProperty<EventHandler<ActionEvent>> propertyOnRepositoryButtonClick = new SimpleObjectProperty<EventHandler<ActionEvent>>();
+    
+    @FXML
+    private void onNewButtonClick(ActionEvent event)
+    {
+	propertyOnNewButtonClick.get().handle(event);
+    }
+    
+    @FXML
+    private void onRepositoryButtonClick(ActionEvent event)
+    {
+	propertyOnRepositoryButtonClick.get().handle(event);
+    }
+    
+    public void setOnNewButtonClick(EventHandler<ActionEvent> handler)
+    {
+	propertyOnNewButtonClick.set(handler);
+    }
+    
+    public void setOnRepositoryButtonClick(EventHandler<ActionEvent> handler)
+    {
+	propertyOnRepositoryButtonClick.set(handler);
+    }
 }

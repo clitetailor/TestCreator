@@ -26,15 +26,44 @@ public class MainWindowController implements Initializable
     @FXML
     Pane mainPane;
     
-    @FXML
-    void onNewButtonClick() throws IOException
+    private void createNewTest() throws IOException
     {
 	TestEditor testEditor = new TestEditor();
 	HBox.setHgrow(testEditor, Priority.ALWAYS);
 	
+	testEditor.setOnCloseButtonClick((event) ->
+	{
+	    try
+	    {
+		this.returnToWelcomePage();
+	    } catch (IOException ex)
+	    {
+		Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
+	    }
+	});
+	
 	mainPane.getChildren().clear();
 	mainPane.getChildren().add(testEditor);
     }
+    
+    private void returnToWelcomePage() throws IOException
+    {
+	WelcomePage welcomePage = new WelcomePage();
+	welcomePage.setOnNewButtonClick((event) ->
+	{
+	    try
+	    {
+		this.createNewTest();
+	    } catch (IOException ex)
+	    {
+		Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
+	    }
+	});
+	
+	mainPane.getChildren().clear();
+	mainPane.getChildren().add(welcomePage);
+    }
+    
     /**
      * Initializes the controller class.
      * @param url
@@ -45,7 +74,18 @@ public class MainWindowController implements Initializable
     {
 	try
 	{
-	    mainPane.getChildren().add(new WelcomePage());
+	    WelcomePage welcomePage = new WelcomePage();
+	    welcomePage.setOnNewButtonClick((event) -> {
+		try
+		{
+		    this.createNewTest();
+		} catch (IOException ex)
+		{
+		    Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	    });
+	    
+	    mainPane.getChildren().add(welcomePage);
 	} catch (IOException ex)
 	{
 	    Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);

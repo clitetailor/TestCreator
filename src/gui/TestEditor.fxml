@@ -20,7 +20,7 @@
             <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="56.0" styleClass="activityButton" text="Choice Question" textAlignment="CENTER" wrapText="true" />
             <Button layoutX="10.0" layoutY="66.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="56.0" styleClass="activityButton" text="Essay Question" textAlignment="CENTER" wrapText="true" />
             <Pane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
-            <Button layoutX="10.0" layoutY="122.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="56.0" text="Close" textAlignment="CENTER" wrapText="true">
+            <Button layoutX="10.0" layoutY="122.0" mnemonicParsing="false" onAction="#onCloseButtonClick" prefHeight="56.0" prefWidth="56.0" text="Close" textAlignment="CENTER" wrapText="true">
                <styleClass>
                   <String fx:value="activityButton" />
                   <String fx:value="activityButtonLast" />
