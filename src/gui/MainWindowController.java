@@ -49,8 +49,7 @@ public class MainWindowController implements Initializable
     private void returnToWelcomePage() throws IOException
     {
 	WelcomePage welcomePage = new WelcomePage();
-	welcomePage.setOnNewButtonClick((event) ->
-	{
+	welcomePage.setOnNewButtonClick((event) -> {
 	    try
 	    {
 		this.createNewTest();
