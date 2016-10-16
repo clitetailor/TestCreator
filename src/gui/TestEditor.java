@@ -25,17 +25,33 @@ import javafx.scene.layout.VBox;
  *
  * @author ducnh
  */
-public class TestEditorController implements Initializable
+public class TestEditor extends HBox
 {
     
+    public TestEditor()
+    {
+	FXMLLoader loader = new FXMLLoader(getClass().getResource("TestEditor.fxml"));
+	loader.setRoot(this);
+	loader.setController(this);
+	
+	try
+	{
+	    loader.load();
+	}
+	catch (IOException exception)
+	{
+	    exception.printStackTrace();
+	}
+    }
+    
     @FXML
-    Button addButton;
+    private Button addButton;
 
     @FXML
-    VBox questionList;
+    private VBox questionList;
 
     @FXML
-    void onAddButtonClick()
+    private void onAddButtonClick()
     {
 	GridPane questionForm = new GridPane();
 
@@ -70,11 +86,5 @@ public class TestEditorController implements Initializable
 	questionForm.getStyleClass().add("questionForm");
 	
 	questionList.getChildren().add(questionForm);
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb)
-    {
-	// TODO
     }
 }

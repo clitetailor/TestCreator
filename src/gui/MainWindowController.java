@@ -9,9 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
@@ -29,7 +27,7 @@ public class MainWindowController implements Initializable
     @FXML
     void onNewButtonClick() throws IOException
     {
-	Node testEditor = FXMLLoader.load(getClass().getResource("TestEditor.fxml"));
+	TestEditor testEditor = new TestEditor();
 	HBox.setHgrow(testEditor, Priority.ALWAYS);
 	
 	mainPane.getChildren().clear();
