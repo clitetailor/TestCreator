@@ -15,8 +15,6 @@ public class ChoiceQuestion extends Question
 {
     private ArrayList<ChoiceAnswer> answers;
 
-    
-
     public ChoiceQuestion() {
         this.answers = new ArrayList<>();
     }
