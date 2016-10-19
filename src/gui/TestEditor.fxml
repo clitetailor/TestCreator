@@ -32,7 +32,7 @@
             <String fx:value="noBorder" />
          </styleClass>
       </VBox>
-      <SplitPane dividerPositions="0.4692132269099202" prefHeight="160.0" prefWidth="200.0" styleClass="primarySplitPane" HBox.hgrow="ALWAYS">
+      <SplitPane dividerPositions="0.38592657342657344" prefHeight="160.0" prefWidth="200.0" styleClass="primarySplitPane" HBox.hgrow="ALWAYS">
         <items>
           <AnchorPane minWidth="0.0" prefHeight="505.0" prefWidth="409.0">
                <children>

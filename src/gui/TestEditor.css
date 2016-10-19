@@ -6,7 +6,7 @@
 .circleMaterialButton {
     -fx-background-radius: 50%;
     -fx-border-radius: 50%;
-    -fx-background-color: orange;
+    -fx-background-color: dodgerblue;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 5, 0, 0, 2);
     -fx-text-fill: white;
 }
@@ -27,6 +27,7 @@
 
     .scrollPane > .scroll-bar > .track {
         -fx-background-color: transparent;
+        -fx-padding: 5;
     }
     
     .scrollPane > .scroll-bar:horizontal > .increment-button,
@@ -42,9 +43,13 @@
     }
     
     .scrollPane > .scroll-bar > .thumb {
-        -fx-background-color: #888;
+        -fx-background-color: transparent;
         -fx-background-radius: 0;
         -fx-background-insets: 1;
+    }
+    
+    .scrollPane:hover > .scroll-bar > .thumb {
+        -fx-background-color: dodgerblue;
     }
     
     .scrollPane > .scroll-bar > .decrement-button,
@@ -114,7 +119,7 @@
 
     .questionForm {
         -fx-background-radius: 15;
-        -fx-padding: 10 20 10 20;
+        -fx-padding: 5 20 20 20;
         -fx-border-radius: 5;
         -fx-background-color: dodgerblue;
         -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 3, 0, 0, 2);
@@ -123,6 +128,14 @@
     .questionForm > * {
         -fx-text-fill: white;
     }
+    
+/*    .questionForm:hover {
+        -fx-background-color: dodgerblue;
+    }
+    
+    .questionForm:hover > * {
+        -fx-text-fill: white;
+    }*/
     
     .questionForm > .title {
         -fx-font-weight: bold;
