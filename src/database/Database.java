@@ -43,10 +43,10 @@ public class Database {
         ArrayList<EssayQuestion> list = new ArrayList<>();
         try {
             Statement stmt = conn.createStatement();
-            String query = "SELECT essayquestion.*, subject.subjectName " +
-                           "FROM essayquestion, subject " +
-                           "WHERE essayquestion.subjectId = subject.subjectId " + 
-                           "AND subjectName LIKE '" + subject + "'";
+            String query = "SELECT essayquestion.*, subject.subjectName "
+                    + "FROM essayquestion, subject "
+                    + "WHERE essayquestion.subjectId = subject.subjectId "
+                    + "AND subjectName LIKE '" + subject + "'";
             //System.out.println(query);
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
@@ -66,12 +66,12 @@ public class Database {
         }
         return list;
     }
-    
+
     private static ArrayList<ChoiceAnswer> getChoiceAnswersByChoiceQuestion(ChoiceQuestion question) {
         ArrayList<ChoiceAnswer> list = new ArrayList<>();
         try {
             PreparedStatement stmt = conn.prepareStatement(
-                "SELECT * FROM choiceanswer WHERE choiceQuestionId = ?");
+                    "SELECT * FROM choiceanswer WHERE choiceQuestionId = ?");
             stmt.setInt(1, question.getId());
             ResultSet rs = stmt.executeQuery();
             ChoiceAnswer choice = null;
@@ -89,18 +89,18 @@ public class Database {
         }
         return list;
     }
-    
+
     public static ArrayList<ChoiceQuestion> getChoiceQuestionsBySubject(String subject) {
         ArrayList<ChoiceQuestion> list = new ArrayList<>();
         try {
             PreparedStatement stmt = conn.prepareStatement(
-                "SELECT choicequestion.* FROM choicequestion, subject " +
-                "WHERE choicequestion.subjectId = subject.subjectId " +
-                "AND subject.subjectName LIKE ?");
+                    "SELECT choicequestion.* FROM choicequestion, subject "
+                    + "WHERE choicequestion.subjectId = subject.subjectId "
+                    + "AND subject.subjectName LIKE ?");
             stmt.setString(1, subject);
             //System.out.println(stmt);
             ResultSet rs = stmt.executeQuery();
-            ChoiceQuestion cq = null;
+            ChoiceQuestion cq;
             while (rs.next()) {
                 cq = new ChoiceQuestion();
                 cq.setId(rs.getInt("choiceQuestionId"));
@@ -117,7 +117,7 @@ public class Database {
         }
         return list;
     }
-    
+
     public static ArrayList<String> getAllSubject() {
         ArrayList<String> list = new ArrayList<>();
         try {
@@ -134,21 +134,66 @@ public class Database {
         }
         return list;
     }
-    
-    public static boolean save(EssayQuestion question) {
+
+    private static int getSubjectIdBySubjectName(String subjectName) {
+        int subjectId = 0;
         try {
-            if (question.getId() < 1) {
-                PreparedStatement stmt = conn.prepareStatement(
-                    "INSERT INTO essayquestion SET " +
-                    "content = ?, subjectId = ?, ");
-            }
-            else {
-                
+            PreparedStatement stmt = conn.prepareStatement(
+                    "SELECT * FROM subject WHERE subjectName LIKE ?");
+            stmt.setString(1, subjectName);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                subjectId = rs.getInt("subjectId");
             }
         } catch (SQLException ex) {
             System.out.println("SQLException: " + ex.getMessage());
             System.out.println("SQLState: " + ex.getSQLState());
             System.out.println("VendorError: " + ex.getErrorCode());
+        }
+        return subjectId;
+    }
+
+    public static boolean save(EssayQuestion question) {
+        try {
+            PreparedStatement stmt;
+            int subjectId = getSubjectIdBySubjectName(question.getSubject());
+            if (subjectId == 0) {
+                return false;
+            }
+            if (question.getId() < 1) {
+                stmt = conn.prepareStatement("INSERT INTO essayquestion "
+                        + "SET content = ?, subjectId = ?, level = ?, "
+                        + "description = ?, answer = ?",
+                        Statement.RETURN_GENERATED_KEYS);
+                stmt.setString(1, question.getContent());
+                stmt.setInt(2, subjectId);
+                stmt.setInt(3, question.getLevel());
+                stmt.setString(4, question.getDescription());
+                stmt.setString(5, question.getAnswer());
+                stmt.executeUpdate();
+                ResultSet key = stmt.getGeneratedKeys();
+                if (key.next()) {
+                    question.setId(key.getInt(1));
+                }
+            } else {
+                // Update
+                stmt = conn.prepareStatement(
+                        "UPDATE essayquestion SET content = ?, subjectId = ?, "
+                        + "level = ?, description ?, answer = ? "
+                        + "WHERE essayQuestionId = ?");
+                stmt.setString(1, question.getContent());
+                stmt.setInt(2, subjectId);
+                stmt.setInt(3, question.getLevel());
+                stmt.setString(4, question.getDescription());
+                stmt.setString(5, question.getAnswer());
+                stmt.setInt(6, question.getId());
+                stmt.executeUpdate();
+            }
+        } catch (SQLException ex) {
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+            return false;
         }
         return true;
     }

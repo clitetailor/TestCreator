@@ -1,6 +1,6 @@
 CREATE TABLE subject (
 	subjectId INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    subjectName VARCHAR(200) NOT NULL
+    subjectName VARCHAR(200) NOT NULL UNIQUE
 );
     
 CREATE TABLE essayquestion (
