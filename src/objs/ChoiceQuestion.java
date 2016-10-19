@@ -13,5 +13,17 @@ import java.util.ArrayList;
  */
 public class ChoiceQuestion extends Question
 {
-    ArrayList<ChoiceAnswer> answers;
+    public ChoiceQuestion(String question, String... answers)
+    {
+	this.content = new String(question);
+	
+	this.answers = new ArrayList<ChoiceAnswer>();
+	
+	for (String answer: answers)
+	{
+	    this.answers.add(new ChoiceAnswer(answer));
+	}
+    }
+    
+    public final ArrayList<ChoiceAnswer> answers;
 }

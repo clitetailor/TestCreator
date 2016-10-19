@@ -11,9 +11,9 @@ package objs;
  */
 public abstract class Question
 {
-    int id;
-    String content;
+    public int id;
+    public String content;
     
-    String subject;
-    int level;
+    public String subject;
+    public int level;
 }

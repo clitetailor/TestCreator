@@ -11,6 +11,13 @@ package objs;
  */
 public class EssayQuestion extends Question
 {
-    String description;
-    String answer;
+    public EssayQuestion(String question, String description, String answer)
+    {
+	this.content = new String(question);
+	this.description = new String(question);
+	this.answer = new String(answer);
+    }
+    
+    public String description;
+    public String answer;
 }
