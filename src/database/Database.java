@@ -153,7 +153,7 @@ public class Database {
         return subjectId;
     }
 
-    public static boolean save(EssayQuestion question) {
+    public static boolean saveEssayQuestion(EssayQuestion question) {
         try {
             PreparedStatement stmt;
             int subjectId = getSubjectIdBySubjectName(question.getSubject());
@@ -198,12 +198,60 @@ public class Database {
         return true;
     }
 
-    public static void main(String[] args) {
-        Database.initialize();
-        ArrayList<String> list = getAllSubject();
-        for (String content : list) {
-            System.out.println(content);
+    public static boolean saveChoiceQuestion(ChoiceQuestion question) {
+        try {
+            PreparedStatement stmt;
+            int subjectId = getSubjectIdBySubjectName(question.getSubject());
+            if (subjectId == 0) {
+                return false;
+            }
+            if (question.getId() < 1) {
+                // Insert new question
+                stmt = conn.prepareStatement(
+                    "INSERT INTO choicequestion SET "
+                    + "content = ?, subjectId = ?, level = ?",
+                    Statement.RETURN_GENERATED_KEYS);
+                stmt.setString(1, question.getContent());
+                stmt.setInt(2, subjectId);
+                stmt.setInt(3, question.getLevel());
+                stmt.executeUpdate();
+                ResultSet key = stmt.getGeneratedKeys();
+                if (key.next()) {
+                    question.setId(key.getInt(1));
+                }
+                for (ChoiceAnswer answer : question.getAnswers()) {
+                    stmt = conn.prepareStatement(
+                        "INSERT INTO choiceanswer SET choiceQuestionId = ?,"
+                                + "content = ?, trueFalse = ?", 
+                            Statement.RETURN_GENERATED_KEYS);
+                    stmt.setInt(1, question.getId());
+                    stmt.setString(2, answer.getContent());
+                    stmt.setBoolean(3, answer.isIsTrue());
+                    stmt.executeUpdate();
+                    key = stmt.getGeneratedKeys();
+                    if (key.next()) {
+                        answer.setId(key.getInt(1));
+                    }
+                }
+            } else {
+                // Update
+            }
+        } catch (SQLException ex) {
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+            return false;
         }
-        //ChoiceQuestion cq = new ChoiceQuestion();
+        return true;
+    }
+
+    public static void main(String[] args) {
+        initialize();
+        ChoiceQuestion question = getChoiceQuestionsBySubject("Van").get(2);
+        for (ChoiceAnswer an : question.getAnswers()) {
+            System.out.println(an.getId());
+            System.out.println(an.getContent());
+            System.out.println(an.isIsTrue());
+        }
     }
 }
