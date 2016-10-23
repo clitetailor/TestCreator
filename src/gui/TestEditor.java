@@ -12,10 +12,13 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javax.swing.ButtonGroup;
 import objs.ChoiceAnswer;
 import objs.ChoiceQuestion;
 import objs.EssayQuestion;
@@ -32,19 +35,23 @@ public class TestEditor extends HBox
     {
 	private Question question;
 	
+	private ObjectProperty<EventHandler<ActionEvent>> propertyOnDeleteButtonClick = new SimpleObjectProperty<EventHandler<ActionEvent>>();
+	private ObjectProperty<EventHandler<ActionEvent>> propertyOnEditButtonClick = new SimpleObjectProperty<EventHandler<ActionEvent>>();
+	
 	TestQuestionForm()
 	{
 	    super();
 	    this.setMaxWidth(450);
+	    this.setSpacing(10);
 	    this.getStyleClass().add("questionForm");
+	    
+	    this.propertyOnDeleteButtonClick.set((ActionEvent event) -> {});
+	    this.propertyOnEditButtonClick.set((ActionEvent event) -> {});
 	}
 	
 	public void setQuestion(Question question)
 	{
 	    this.question = question;
-	    
-	    System.out.println(question instanceof ChoiceQuestion);
-	    System.out.println(question instanceof EssayQuestion);
 	    
 	    if (question instanceof ChoiceQuestion)
 	    {
@@ -72,6 +79,20 @@ public class TestEditor extends HBox
 		    
 		    this.getChildren().add(answerContent);
 		}
+		
+		ButtonBar buttonBar = new ButtonBar();
+		
+		Button editButton = new Button("Edit");
+		editButton.getStyleClass().addAll("materialButton", "primary");
+		editButton.setOnAction((event) -> propertyOnEditButtonClick.get().handle((event)));
+		
+		Button deleteButton = new Button("Delete");
+		deleteButton.getStyleClass().addAll("materialButton", "intense");
+		deleteButton.setOnAction((event) -> propertyOnDeleteButtonClick.get().handle(event));
+		
+		buttonBar.getButtons().addAll(editButton, deleteButton);
+		
+		this.getChildren().addAll(buttonBar);
 	    }
 	    
 	    if (question instanceof EssayQuestion)
@@ -101,9 +122,35 @@ public class TestEditor extends HBox
 		this.getChildren().addAll(questionTitle, questionContent,
 			descriptionTitle, descriptionContent,
 			answerTitle, answerContent);
+		
+		ButtonBar buttonBar = new ButtonBar();
+		
+		Button editButton = new Button("Edit");
+		editButton.getStyleClass().addAll("materialButton", "primary");
+		editButton.setOnAction((event) -> propertyOnEditButtonClick.get().handle((event)));
+		
+		Button deleteButton = new Button("Delete");
+		deleteButton.getStyleClass().addAll("materialButton", "intense");
+		deleteButton.setOnAction((event) -> propertyOnDeleteButtonClick.get().handle(event));
+		
+		buttonBar.getButtons().addAll(editButton, deleteButton);
+		
+		this.getChildren().addAll(buttonBar);
 	    }
 	}
+	
+	public void setOnDeleteButtonClick(EventHandler<ActionEvent> handler)
+	{
+	    propertyOnDeleteButtonClick.set(handler);
+	}
+	
+	public void setOnEditButtonClick(EventHandler<ActionEvent> handler)
+	{
+	    propertyOnEditButtonClick.set(handler);
+	}
     }
+    
+    
     
     public TestEditor() throws IOException
     {
@@ -125,6 +172,17 @@ public class TestEditor extends HBox
     {
 	TestQuestionForm testQuestionForm = new TestQuestionForm();
 	testQuestionForm.setQuestion(new EssayQuestion("What is this?", "This is a cat!", "None"));
+	
+	testQuestionForm.setOnDeleteButtonClick((event) ->
+	{
+	    questionList.getChildren().remove(testQuestionForm);
+	});
+	
+	testQuestionForm.setOnEditButtonClick((event) ->
+	{
+	    
+	});
+	
 	questionList.getChildren().add(testQuestionForm);
     }
     

@@ -9,12 +9,36 @@
     -fx-background-color: dodgerblue;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 5, 0, 0, 2);
     -fx-text-fill: white;
+    
+    -fx-cursor: hand;
 }
 
 .circleMaterialButton:hover {
     -fx-background-color: white;
     -fx-text-fill: #666;
 }
+
+.materialButton {
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-padding: 8;
+    -fx-background-color: white;
+    -fx-text-fill: #444;
+    -fx-font-weight: bold;
+    
+    -fx-cursor: hand;
+}
+
+.materialButton.intense {
+    -fx-background-color: tomato;
+    -fx-text-fill: white;
+}
+
+.materialButton.primary {
+    -fx-background-color: dodgerblue;
+    -fx-text-fill: white;
+}
+
 
 .scrollPane:focused {
     -fx-focus-color: transparent;
@@ -90,9 +114,8 @@
     }
 
     .activityButton:hover {
-        -fx-background-color: deepskyblue;
+        -fx-background-color: orange;
         -fx-text-fill: #222;
-        -fx-border-color: deepskyblue;
     }
     
     .activityButtonLast {
@@ -121,25 +144,17 @@
         -fx-background-radius: 15;
         -fx-padding: 5 20 20 20;
         -fx-border-radius: 5;
-        -fx-background-color: dodgerblue;
+        -fx-background-color: white;
         -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 3, 0, 0, 2);
     }
     
     .questionForm > * {
-        -fx-text-fill: white;
+        -fx-text-fill: #444;
     }
-    
-/*    .questionForm:hover {
-        -fx-background-color: dodgerblue;
-    }
-    
-    .questionForm:hover > * {
-        -fx-text-fill: white;
-    }*/
     
     .questionForm > .title {
         -fx-font-weight: bold;
-        -fx-padding: 15 0 5 0;
+        -fx-padding: 10 0 0 0;
     }
     
     .questionForm > .content {
