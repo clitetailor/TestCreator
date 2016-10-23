@@ -28,6 +28,9 @@ public class WelcomePage extends HBox
 	loader.setRoot(this);
 	loader.setController(this);
 	loader.load();
+	
+	propertyOnNewButtonClick.set((event) -> {});
+	propertyOnRepositoryButtonClick.set((event) -> {});
     }
     
     private final ObjectProperty<EventHandler<ActionEvent>> propertyOnNewButtonClick = new SimpleObjectProperty<EventHandler<ActionEvent>>();

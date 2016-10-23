@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
@@ -12,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root alignment="CENTER" prefHeight="720.0" prefWidth="1200.0" styleClass="noBorder" stylesheets="@TestEditor.css" type="HBox" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root alignment="CENTER" prefHeight="720.0" prefWidth="1200.0" styleClass="noBorder" type="HBox" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox prefHeight="200.0" prefWidth="56.0">
          <children>
@@ -67,4 +68,8 @@
         </items>
       </SplitPane>
    </children>
+   <stylesheets>
+      <URL value="@TestEditor.css" />
+      <URL value="@MaterialDesign.css" />
+   </stylesheets>
 </fx:root>

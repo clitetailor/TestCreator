@@ -10,7 +10,7 @@
       <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="300.0" minWidth="-Infinity" prefHeight="720.0" prefWidth="300.0" spacing="20.0">
          <children>
             <Button mnemonicParsing="false" onAction="#onNewButtonClick" styleClass="primaryButton" text="New" />
-            <Button mnemonicParsing="false" styleClass="primaryButton" text="Repository" />
+            <Button mnemonicParsing="false" onAction="#onRepositoryButtonClick" styleClass="primaryButton" text="Repository" />
          </children>
          <padding>
             <Insets top="100.0" />

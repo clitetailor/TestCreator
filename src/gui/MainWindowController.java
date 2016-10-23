@@ -26,7 +26,7 @@ public class MainWindowController implements Initializable
     @FXML
     Pane mainPane;
     
-    private void createNewTest() throws IOException
+    private void openTestEditor() throws IOException
     {
 	TestEditor testEditor = new TestEditor();
 	HBox.setHgrow(testEditor, Priority.ALWAYS);
@@ -35,7 +35,7 @@ public class MainWindowController implements Initializable
 	{
 	    try
 	    {
-		this.returnToWelcomePage();
+		this.showWelcomePage();
 	    } catch (IOException ex)
 	    {
 		Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
@@ -46,13 +46,32 @@ public class MainWindowController implements Initializable
 	mainPane.getChildren().add(testEditor);
     }
     
-    private void returnToWelcomePage() throws IOException
+    private void openRepositoryEditor() throws IOException
+    {
+	RepositoryEditor repositoryEditor = new RepositoryEditor();
+	HBox.setHgrow(repositoryEditor, Priority.ALWAYS);
+	
+	mainPane.getChildren().clear();
+	mainPane.getChildren().add(repositoryEditor);
+    }
+    
+    private void showWelcomePage() throws IOException
     {
 	WelcomePage welcomePage = new WelcomePage();
 	welcomePage.setOnNewButtonClick((event) -> {
 	    try
 	    {
-		this.createNewTest();
+		this.openTestEditor();
+	    } catch (IOException ex)
+	    {
+		Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
+	    }
+	});
+	
+	welcomePage.setOnRepositoryButtonClick((event) -> {
+	    try
+	    {
+		this.openRepositoryEditor();
 	    } catch (IOException ex)
 	    {
 		Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
@@ -77,7 +96,18 @@ public class MainWindowController implements Initializable
 	    welcomePage.setOnNewButtonClick((event) -> {
 		try
 		{
-		    this.createNewTest();
+		    this.openTestEditor();
+		} catch (IOException ex)
+		{
+		    Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	    });
+	    
+	    
+	    welcomePage.setOnRepositoryButtonClick((event) -> {
+		try
+		{
+		    this.openRepositoryEditor();
 		} catch (IOException ex)
 		{
 		    Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);

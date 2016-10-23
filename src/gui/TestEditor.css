@@ -3,43 +3,6 @@
  */
 
 
-.circleMaterialButton {
-    -fx-background-radius: 50%;
-    -fx-border-radius: 50%;
-    -fx-background-color: dodgerblue;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 5, 0, 0, 2);
-    -fx-text-fill: white;
-    
-    -fx-cursor: hand;
-}
-
-.circleMaterialButton:hover {
-    -fx-background-color: white;
-    -fx-text-fill: #666;
-}
-
-.materialButton {
-    -fx-background-radius: 5;
-    -fx-border-radius: 5;
-    -fx-padding: 8;
-    -fx-background-color: white;
-    -fx-text-fill: #444;
-    -fx-font-weight: bold;
-    
-    -fx-cursor: hand;
-}
-
-.materialButton.intense {
-    -fx-background-color: tomato;
-    -fx-text-fill: white;
-}
-
-.materialButton.primary {
-    -fx-background-color: dodgerblue;
-    -fx-text-fill: white;
-}
-
-
 .scrollPane:focused {
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
@@ -88,39 +51,6 @@
         -fx-background-color: transparent;
     }
 
-
-
-
-
-
-
-.activityBar {
-    -fx-background-color: #222;
-    -fx-border-width: 0 1 0 0;
-    -fx-border-color: #444;
-}
-
-    .activityButton {
-        -fx-background-color: transparent;
-        -fx-background-radius: 0;
-        -fx-text-fill: #ddd;
-        -fx-border-width: 0 0 1 0;
-        -fx-border-color: #444;
-        -fx-font-style: italic;
-        -fx-font-family: "Arial";
-        -fx-font-size: 11;
-        -fx-padding: 0;
-        -fx-background-insets: 0;
-    }
-
-    .activityButton:hover {
-        -fx-background-color: orange;
-        -fx-text-fill: #222;
-    }
-    
-    .activityButtonLast {
-        -fx-border-width: 1 0 0 0;
-    }
 
 
 .sideNav {
