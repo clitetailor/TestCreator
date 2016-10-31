@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import objs.ChoiceAnswer;
 import objs.ChoiceQuestion;
 import objs.EssayQuestion;
+import objs.Question;
 
 /**
  *
@@ -74,7 +75,7 @@ public class Database {
                     "SELECT * FROM choiceanswer WHERE choiceQuestionId = ?");
             stmt.setInt(1, question.getId());
             ResultSet rs = stmt.executeQuery();
-            ChoiceAnswer choice = null;
+            ChoiceAnswer choice;
             while (rs.next()) {
                 choice = new ChoiceAnswer();
                 choice.setId(rs.getInt("choiceAnswerId"));
@@ -243,6 +244,14 @@ public class Database {
             return false;
         }
         return true;
+    }
+    
+    public boolean saveQuestion(Question question) {
+        if (question instanceof EssayQuestion) {
+            return saveEssayQuestion((EssayQuestion)question);
+        } else {
+            return saveChoiceQuestion((ChoiceQuestion)question);
+        }
     }
 
     public static void main(String[] args) {
