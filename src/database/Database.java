@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
+import java.util.Collections;
 import objs.ChoiceAnswer;
 import objs.ChoiceQuestion;
 import objs.EssayQuestion;
@@ -209,9 +210,9 @@ public class Database {
             if (question.getId() < 1) {
                 // Insert new question
                 stmt = conn.prepareStatement(
-                    "INSERT INTO choicequestion SET "
-                    + "content = ?, subjectId = ?, level = ?",
-                    Statement.RETURN_GENERATED_KEYS);
+                        "INSERT INTO choicequestion SET "
+                        + "content = ?, subjectId = ?, level = ?",
+                        Statement.RETURN_GENERATED_KEYS);
                 stmt.setString(1, question.getContent());
                 stmt.setInt(2, subjectId);
                 stmt.setInt(3, question.getLevel());
@@ -222,8 +223,8 @@ public class Database {
                 }
                 for (ChoiceAnswer answer : question.getAnswers()) {
                     stmt = conn.prepareStatement(
-                        "INSERT INTO choiceanswer SET choiceQuestionId = ?,"
-                                + "content = ?, trueFalse = ?", 
+                            "INSERT INTO choiceanswer SET choiceQuestionId = ?,"
+                            + "content = ?, trueFalse = ?",
                             Statement.RETURN_GENERATED_KEYS);
                     stmt.setInt(1, question.getId());
                     stmt.setString(2, answer.getContent());
@@ -236,6 +237,33 @@ public class Database {
                 }
             } else {
                 // Update
+                stmt = conn.prepareStatement(
+                        "UPDATE choicequestion SET content = ?, subjectId = ?, level = ? "
+                        + "WHERE choiceQuestionId = ?");
+                stmt.setString(1, question.getContent());
+                stmt.setInt(2, getSubjectIdBySubjectName(question.getSubject()));
+                stmt.setInt(3, question.getLevel());
+                stmt.setInt(4, question.getId());
+                stmt.executeUpdate();
+                stmt = conn.prepareStatement(
+                        "DELETE FROM choiceanswer WHERE choiceQuestionId = ?");
+                stmt.setInt(1, question.getId());
+                stmt.executeUpdate();
+                // Save answer
+                for (ChoiceAnswer answer : question.getAnswers()) {
+                    stmt = conn.prepareStatement(
+                            "INSERT INTO choiceanswer SET choiceQuestionId = ?,"
+                            + "content = ?, trueFalse = ?",
+                            Statement.RETURN_GENERATED_KEYS);
+                    stmt.setInt(1, question.getId());
+                    stmt.setString(2, answer.getContent());
+                    stmt.setBoolean(3, answer.isIsTrue());
+                    stmt.executeUpdate();
+                    ResultSet key = stmt.getGeneratedKeys();
+                    if (key.next()) {
+                        answer.setId(key.getInt(1));
+                    }
+                }
             }
         } catch (SQLException ex) {
             System.out.println("SQLException: " + ex.getMessage());
@@ -245,22 +273,156 @@ public class Database {
         }
         return true;
     }
-    
-    public boolean saveQuestion(Question question) {
+
+    public static boolean saveQuestion(Question question) {
         if (question instanceof EssayQuestion) {
-            return saveEssayQuestion((EssayQuestion)question);
+            return saveEssayQuestion((EssayQuestion) question);
         } else {
-            return saveChoiceQuestion((ChoiceQuestion)question);
+            return saveChoiceQuestion((ChoiceQuestion) question);
         }
+    }
+
+    public static ArrayList<EssayQuestion> getRandomEssayQuestion(String subject, int level, int number) {
+        ArrayList<EssayQuestion> result = new ArrayList<>();
+        try {
+            ArrayList<Integer> idList = new ArrayList<>();
+            PreparedStatement stmt = conn.prepareStatement(
+                    "SELECT subjectId FROM subject WHERE subjectName LIKE ?");
+            stmt.setString(1, subject);
+            ResultSet rs = stmt.executeQuery();
+            int subjectId = 0;
+            if (rs.next()) {
+                subjectId = rs.getInt("subjectId");
+            }
+
+            stmt = conn.prepareStatement(
+                    "SELECT essayQuestionId AS id FROM essayquestion "
+                    + "WHERE level = ? and subjectId = ?");
+            stmt.setInt(1, level);
+            stmt.setInt(2, subjectId);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                idList.add(rs.getInt("id"));
+            }
+            Collections.shuffle(idList);
+            int count = number;
+            int index = 0;
+            EssayQuestion question;
+            while (count > 0) {
+                if (index == idList.size()) {
+                    break;
+                }
+                stmt = conn.prepareStatement("SELECT * from essayquestion "
+                        + "WHERE essayQuestionId = ?");
+                stmt.setInt(1, idList.get(index));
+                index++;
+                rs = stmt.executeQuery();
+                if (rs.next()) {
+                    question = new EssayQuestion();
+                    question.setId(rs.getInt("essayQuestionId"));
+                    question.setAnswer(rs.getString("answer"));
+                    question.setContent(rs.getString("content"));
+                    question.setDescription(rs.getString("description"));
+                    question.setLevel(level);
+                    question.setSubject(subject);
+                    result.add(question);
+                    count--;
+                }
+
+            }
+        } catch (SQLException ex) {
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+        }
+        return result;
+    }
+
+    public static ArrayList<ChoiceQuestion> getRandomChoiceQuestion(String subject, int level, int number) {
+        ArrayList<ChoiceQuestion> result = new ArrayList<>();
+        try {
+            PreparedStatement stmt = conn.prepareStatement(
+                    "SELECT subjectId FROM subject WHERE subjectName LIKE ?");
+            stmt.setString(1, subject);
+            ResultSet rs = stmt.executeQuery();
+            int subjectId = 0;
+            if (rs.next()) {
+                subjectId = rs.getInt("subjectId");
+            }
+            stmt = conn.prepareStatement(
+                    "SELECT choiceQuestionId AS id FROM choicequestion "
+                    + "WHERE level = ? and subjectId = ?");
+            stmt.setInt(1, level);
+            stmt.setInt(2, subjectId);
+            ArrayList<Integer> idList = new ArrayList<>();
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                idList.add(rs.getInt("id"));
+            }
+            Collections.shuffle(idList);
+            int count = number;
+            int index = 0;
+            ChoiceQuestion question;
+            while (count > 0) {
+                if (index == idList.size()) {
+                    break;
+                }
+                stmt = conn.prepareStatement("SELECT * from choicequestion "
+                        + "WHERE choiceQuestionId = ?");
+                stmt.setInt(1, idList.get(index));
+                index++;
+                rs = stmt.executeQuery();
+                if (rs.next()) {
+                    // Add question here
+                    question = new ChoiceQuestion();
+                    question.setId(rs.getInt("choiceQuestionId"));
+                    question.setContent(rs.getString("content"));
+                    question.setLevel(level);
+                    question.setSubject(subject);
+                    ArrayList<ChoiceAnswer> answerList = new ArrayList<>();
+                    // Anwser here
+                    stmt = conn.prepareStatement(
+                            "SELECT * FROM choiceanswer WHERE choiceQuestionId = ?");
+                    stmt.setInt(1, question.getId());
+                    rs = stmt.executeQuery();
+                    ChoiceAnswer answer;
+                    while (rs.next()) {
+                        answer = new ChoiceAnswer();
+                        answer.setContent(rs.getString("content"));
+                        answer.setId(rs.getInt("choiceAnswerId"));
+                        answer.setIsTrue(rs.getBoolean("trueFalse"));
+                        answerList.add(answer);
+                    }
+                    question.setAnswers(answerList);
+                    result.add(question);
+                    count--;
+                }
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+        }
+        return result;
     }
 
     public static void main(String[] args) {
         initialize();
-        ChoiceQuestion question = getChoiceQuestionsBySubject("Van").get(2);
-        for (ChoiceAnswer an : question.getAnswers()) {
-            System.out.println(an.getId());
-            System.out.println(an.getContent());
-            System.out.println(an.isIsTrue());
-        }
+        ArrayList<ChoiceQuestion> result = getChoiceQuestionsBySubject("Van");
+        ChoiceQuestion question = result.get(0);
+        System.out.println(question.getContent());
+        ArrayList<ChoiceAnswer> answerList = new ArrayList<>();
+        ChoiceAnswer answer = new ChoiceAnswer();
+        answer.setContent("X");
+        answer.setIsTrue(true);
+        answerList.add(answer);
+        
+        answer = new ChoiceAnswer();
+        answer.setContent("Y");
+        answer.setIsTrue(false);
+        answerList.add(answer);
+        question.setAnswers(answerList);
+        saveChoiceQuestion(question);
     }
 }
