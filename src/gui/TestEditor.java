@@ -6,6 +6,8 @@
 package gui;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
@@ -13,9 +15,9 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import objs.EssayQuestion;
 import objs.Question;
 
 /**
@@ -33,31 +35,38 @@ public class TestEditor extends HBox
 	loader.setController(this);
 	
 	loader.load();
+	
+	this.setOnCloseButtonClick((event) -> {});
+	
+	this.questionForm.setOnDoneButtonClick((event) ->
+		{
+		    Question question = this.questionForm.getQuestion();
+		    QuestionBox questionBox;
+		    
+		    try
+		    {
+			questionBox = new QuestionBox(question);
+			
+		        this.questionVBox.getChildren().add(questionBox);
+		    } catch (IOException ex)
+		    {
+			Logger.getLogger(TestEditor.class.getName()).log(Level.SEVERE, null, ex);
+		    }
+		});
     }
     
-    @FXML
-    private Button addButton;
+    @FXML private Button addButton;
 
-    @FXML
-    private VBox questionVBox;
+    @FXML private VBox questionVBox;
+    @FXML private QuestionForm questionForm;
+    @FXML private ScrollPane scrollPane;
 
     @FXML
     private void onAddButtonClick() throws IOException
     {
-	Question question = new EssayQuestion("What is this?", "This is a cat!", "None");
-	QuestionForm questionForm = new QuestionForm(question);
-	
-	questionForm.setOnDeleteButtonClick((event) ->
-	{
-	    questionVBox.getChildren().remove(questionForm);
-	});
-	
-	questionForm.setOnEditButtonClick((event) ->
-	{
-	    
-	});
-	
-	questionVBox.getChildren().add(questionForm);
+	this.questionForm.setVisible(true);
+	this.questionForm.setManaged(true);
+	this.scrollPane.setVvalue(0.1);
     }
     
     public final ObjectProperty<EventHandler<ActionEvent>> propertyOnCloseButtonClick = new SimpleObjectProperty<EventHandler<ActionEvent>>();

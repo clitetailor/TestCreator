@@ -1,0 +1,13 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.contextTool
+{
+    -fx-spacing: 5px;
+}
+
+.contextButton
+{
+    -fx-background-color: transparent;
+}

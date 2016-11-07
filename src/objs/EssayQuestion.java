@@ -18,6 +18,11 @@ public class EssayQuestion extends Question
 	this.answer = new String(answer);
     }
     
+    public EssayQuestion()
+    {
+	
+    }
+    
     public String description;
     public String answer;
 }

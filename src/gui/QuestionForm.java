@@ -6,18 +6,21 @@
 package gui;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.TabPane;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import objs.ChoiceAnswer;
 import objs.ChoiceQuestion;
 import objs.EssayQuestion;
 import objs.Question;
@@ -29,134 +32,104 @@ import objs.Question;
  */
 public class QuestionForm extends VBox
 {
-    private Question question;
-    
-    @FXML
-    VBox answers;
-    
-    @FXML
-    VBox description;
 
-    private ObjectProperty<EventHandler<ActionEvent>> propertyOnDeleteButtonClick = new SimpleObjectProperty<EventHandler<ActionEvent>>();
-    private ObjectProperty<EventHandler<ActionEvent>> propertyOnEditButtonClick = new SimpleObjectProperty<EventHandler<ActionEvent>>();
-    
-    QuestionForm(Question question) throws IOException
+    public QuestionForm() throws IOException
     {
 	FXMLLoader loader = new FXMLLoader(getClass().getResource("QuestionForm.fxml"));
 	loader.setRoot(this);
 	loader.setController(this);
-
-	this.propertyOnDeleteButtonClick.set((ActionEvent event) -> {});
-	this.propertyOnEditButtonClick.set((ActionEvent event) -> {});
+	
 	loader.load();
-
-	answers.managedProperty().bind(answers.visibleProperty());
-	description.managedProperty().bind(description.visibleProperty());
 	
-	this.setQuestion(question);
+	this.setManaged(false);
 	
+	this.setOnCancelButtonClick((event) -> {});
+	this.setOnDoneButtonClick((event) -> {});
     }
-
-    public void setQuestion(Question question)
+    
+    @FXML private Label subjectLabel;
+    @FXML private TextField subjectTextField;
+    
+    
+    private final ObjectProperty<EventHandler<ActionEvent>> propertyOnDoneButtonClick = new SimpleObjectProperty<EventHandler<ActionEvent>>();
+    private final ObjectProperty<EventHandler<ActionEvent>> propertyOnCancelButtonClick = new SimpleObjectProperty<EventHandler<ActionEvent>>();
+    
+    public void setOnDoneButtonClick(EventHandler<ActionEvent> handler)
     {
-	this.question = question;
-
+	propertyOnDoneButtonClick.set(handler);
+    }
+    
+    public void setOnCancelButtonClick(EventHandler<ActionEvent> handler)
+    {
+	propertyOnCancelButtonClick.set(handler);
+    }
+    
+    @FXML
+    private void onDoneButtonClick(ActionEvent event)
+    {
+	this.propertyOnDoneButtonClick.get().handle(event);
+	this.setVisible(false);
+	this.setManaged(false);
+    }
+    
+    @FXML
+    private void onCancelButtonClick(ActionEvent event)
+    {
+	this.propertyOnCancelButtonClick.get().handle(event);
+	this.setVisible(false);
+	this.setManaged(false);
+    }
+    
+    
+    @FXML private VBox choiceAnswerVBox;
+    
+    @FXML
+    private void onAddButtonClick(ActionEvent event) throws IOException
+    {
+	ChoiceAnswerBox choiceAnswerBox = new ChoiceAnswerBox();
 	
-	if (question instanceof ChoiceQuestion)
+	VBox.setVgrow(choiceAnswerBox, Priority.ALWAYS);
+	
+	this.choiceAnswerVBox.getChildren().add(choiceAnswerBox);
+	this.tabPane.getSelectionModel().select(0);
+	this.tabPane.getSelectionModel().select(1);
+    }
+    
+    
+    
+    @FXML private TabPane tabPane;
+    
+    @FXML private TextArea questionTextArea;
+    @FXML private TextArea answerTextArea;
+    @FXML private TextArea descriptionTextArea;
+    
+
+    
+    @FXML
+    public Question getQuestion()
+    {	
+	if (tabPane.getSelectionModel().getSelectedIndex() == 0)
 	{
-	    ChoiceQuestion choiceQuestion = (ChoiceQuestion) question;
-
+	    EssayQuestion essayQuestion = new EssayQuestion(questionTextArea.getText(), answerTextArea.getText(), descriptionTextArea.getText());
+	    return essayQuestion;
+	}
+	else if (tabPane.getSelectionModel().getSelectedIndex() == 1)
+	{
+	    ArrayList choiceAnswerArrayList = new ArrayList();
 	    
-	    
-	    this.getChildren().clear();
-
-	    Label questionTitle = new Label("Question");
-	    questionTitle.getStyleClass().add("title");
-
-	    Label questionContent = new Label(choiceQuestion.content);
-	    questionContent.getStyleClass().add("content");
-
-	    this.getChildren().addAll(questionTitle, questionContent);
-
-	    Label answerTitle = new Label("Answers");
-	    answerTitle.getStyleClass().add("title");
-
-	    this.getChildren().add(answerTitle);
-
-	    for (ChoiceAnswer answer: choiceQuestion.answers)
+	    for (Node node: this.choiceAnswerVBox.getChildren())
 	    {
-		Label answerContent = new Label(answer.content);
-		answerContent.getStyleClass().add("content");
-
-		this.getChildren().add(answerContent);
+		ChoiceAnswerBox choiceAnswerBox = (ChoiceAnswerBox) node;
+		choiceAnswerArrayList.add(choiceAnswerBox.getChoiceAnswer());
 	    }
-
-	    ButtonBar buttonBar = new ButtonBar();
-
-	    Button editButton = new Button("Edit");
-	    editButton.getStyleClass().addAll("materialButton", "primary");
-	    editButton.setOnAction((event) -> propertyOnEditButtonClick.get().handle((event)));
-
-	    Button deleteButton = new Button("Delete");
-	    deleteButton.getStyleClass().addAll("materialButton", "intense");
-	    deleteButton.setOnAction((event) -> propertyOnDeleteButtonClick.get().handle(event));
-
-	    buttonBar.getButtons().addAll(editButton, deleteButton);
-
-	    this.getChildren().addAll(buttonBar);
+	    
+	    ChoiceQuestion choiceQuestion = new ChoiceQuestion(questionTextArea.getText(), choiceAnswerArrayList);
+	    
+	    return choiceQuestion;
 	}
-
-	if (question instanceof EssayQuestion)
+	else
 	{
-	    EssayQuestion essayQuestion = (EssayQuestion) question;
-
-	    this.getChildren().clear();
-
-	    Label questionTitle = new Label("Question");
-	    questionTitle.getStyleClass().add("title");
-
-	    Label questionContent = new Label(essayQuestion.content);
-	    questionContent.getStyleClass().add("content");
-
-	    Label descriptionTitle = new Label("Description");
-	    descriptionTitle.getStyleClass().add("title");
-
-	    Label descriptionContent = new Label(essayQuestion.description);
-	    descriptionContent.getStyleClass().add("content");
-
-	    Label answerTitle = new Label("Answer");
-	    answerTitle.getStyleClass().add("title");
-
-	    Label answerContent = new Label(essayQuestion.answer);
-	    answerContent.getStyleClass().add("content");
-
-	    this.getChildren().addAll(questionTitle, questionContent,
-		    descriptionTitle, descriptionContent,
-		    answerTitle, answerContent);
-
-	    ButtonBar buttonBar = new ButtonBar();
-
-	    Button editButton = new Button("Edit");
-	    editButton.getStyleClass().addAll("materialButton", "primary");
-	    editButton.setOnAction((event) -> propertyOnEditButtonClick.get().handle((event)));
-
-	    Button deleteButton = new Button("Delete");
-	    deleteButton.getStyleClass().addAll("materialButton", "intense");
-	    deleteButton.setOnAction((event) -> propertyOnDeleteButtonClick.get().handle(event));
-
-	    buttonBar.getButtons().addAll(editButton, deleteButton);
-
-	    this.getChildren().addAll(buttonBar);
+	    return null;
 	}
-    }
-
-    public void setOnDeleteButtonClick(EventHandler<ActionEvent> handler)
-    {
-	propertyOnDeleteButtonClick.set(handler);
-    }
-
-    public void setOnEditButtonClick(EventHandler<ActionEvent> handler)
-    {
-	propertyOnEditButtonClick.set(handler);
     }
 }

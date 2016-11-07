@@ -11,9 +11,10 @@ package objs;
  */
 public class ChoiceAnswer
 {
-    public ChoiceAnswer(String answer)
+    public ChoiceAnswer(String answer, boolean isTrue)
     {
 	this.content = answer;
+	this.isTrue = isTrue;
     }
     
     public int id;

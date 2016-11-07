@@ -21,9 +21,22 @@ public class ChoiceQuestion extends Question
 	
 	for (String answer: answers)
 	{
-	    this.answers.add(new ChoiceAnswer(answer));
+	    this.answers.add(new ChoiceAnswer(answer, true));
 	}
     }
+    
+    public ChoiceQuestion()
+    {
+	this.answers = new ArrayList<ChoiceAnswer>();
+    }
+    
+    public ChoiceQuestion(String text, ArrayList choiceAnswerArrayList)
+    {
+	this.content = text;
+	this.answers = choiceAnswerArrayList;
+    }
+    
+    
     
     public final ArrayList<ChoiceAnswer> answers;
 }

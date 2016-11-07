@@ -92,12 +92,21 @@ public class MainWindowController implements Initializable
     {
 	try
 	{
+	    QuestionForm questionForm = new QuestionForm();
+	} catch (IOException ex)
+	{
+	    Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
+	}
+	
+	try
+	{
 	    WelcomePage welcomePage = new WelcomePage();
 	    welcomePage.setOnNewButtonClick((event) -> {
 		try
 		{
 		    this.openTestEditor();
-		} catch (IOException ex)
+		}
+		catch (IOException ex)
 		{
 		    Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
 		}
@@ -108,7 +117,8 @@ public class MainWindowController implements Initializable
 		try
 		{
 		    this.openRepositoryEditor();
-		} catch (IOException ex)
+		}
+		catch (IOException ex)
 		{
 		    Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
 		}

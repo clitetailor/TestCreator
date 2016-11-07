@@ -2,54 +2,11 @@
  * Empty Stylesheet file.
  */
 
-
-.scrollPane:focused {
-    -fx-focus-color: transparent;
-    -fx-faint-focus-color: transparent;
+.testEditor
+{
+    -fx-background-color: white;
 }
 
-    .scrollPane > .scroll-bar {
-        -fx-background-color: transparent
-    }
-
-    .scrollPane > .scroll-bar > .track {
-        -fx-background-color: transparent;
-        -fx-padding: 5;
-    }
-    
-    .scrollPane > .scroll-bar:horizontal > .increment-button,
-    .scrollPane > .scroll-bar:horizontal > .decrement-button {
-        -fx-background-color: transparent;
-        -fx-background-radius: 0;
-    }
-    
-    .scrollPane > .scroll-bar:vertical > .increment-button,
-    .scrollPane > .scroll-bar:vertical > .decrement-button {
-        -fx-background-color: transparent;
-        -fx-background-radius: 0;
-    }
-    
-    .scrollPane > .scroll-bar > .thumb {
-        -fx-background-color: transparent;
-        -fx-background-radius: 0;
-        -fx-background-insets: 1;
-    }
-    
-    .scrollPane:hover > .scroll-bar > .thumb {
-        -fx-background-color: dodgerblue;
-    }
-    
-    .scrollPane > .scroll-bar > .decrement-button,
-    .scrollPane > .scroll-bar > .increment-button {
-        
-    }
-    
-    .scrollPane > .scroll-bar > .decrement-button > .decrement-arrow,
-    .scrollPane > .scroll-bar > .increment-button > .increment-arrow {
-        -fx-shape: null;
-        -fx-padding: 2;
-        -fx-background-color: transparent;
-    }
 
 
 
