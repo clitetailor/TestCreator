@@ -2,7 +2,6 @@
 
 <?import gui.QuestionForm?>
 <?import java.lang.String?>
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
@@ -16,18 +15,18 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1200.0" styleClass="repositoryEditorLayout" type="HBox" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1200.0" styleClass="repositoryEditorLayout" stylesheets="@MaterialDesign.css" type="HBox" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <StackPane alignment="TOP_LEFT" HBox.hgrow="ALWAYS">
          <children>
-            <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" styleClass="scrollPane">
+            <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" styleClass="scrollPane">
                <content>
                   <VBox alignment="TOP_CENTER" prefHeight="815.0" prefWidth="636.0" spacing="20.0" styleClass="container">
                      <padding>
                         <Insets bottom="30.0" left="40.0" right="40.0" top="30.0" />
                      </padding>
                      <children>
-                        <QuestionForm fx:id="questionForm" />
+                        <QuestionForm fx:id="questionForm" visible="false" />
                         
                         <AnchorPane fx:id="questionAnchorPane" prefHeight="200.0" prefWidth="200.0" />
                      </children>
@@ -66,8 +65,4 @@
          </children>
       </StackPane>
    </children>
-   <stylesheets>
-      <URL value="@RepositoryEditor.css" />
-      <URL value="@MaterialDesign.css" />
-   </stylesheets>
 </fx:root>

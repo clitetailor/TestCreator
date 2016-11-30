@@ -5,8 +5,11 @@
  */
 package gui;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.io.IOException;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.VBox;
 
 /**
@@ -14,7 +17,26 @@ import javafx.scene.layout.VBox;
  *
  * @author ducnh
  */
-public class QuestionPickerDialog extends VBox
-{ 
+public class QuestionPickerDialog extends VBox {
+    public QuestionPickerDialog() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("QuestionPickerDialog.fxml"));
+        loader.setRoot(this);
+        loader.setController(this);
+        loader.load();
+    }
     
+    private EventHandler<ActionEvent> searchEventHandler = (ActionEvent event) -> { };
+    
+    public void setOnSearchButtonClick(EventHandler<ActionEvent> handler) {
+        this.searchEventHandler = handler;
+    }
+    
+    @FXML
+    private void onSearchButtonClick(ActionEvent event) {
+        searchEventHandler.handle(event);
+    }
+    
+    public void getQuestion() {
+        
+    }
 }

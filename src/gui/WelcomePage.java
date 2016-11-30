@@ -19,42 +19,38 @@ import javafx.scene.layout.HBox;
  *
  * @author ducnh
  */
-public class WelcomePage extends HBox
-{   
-    
-    public WelcomePage() throws IOException
-    {
-	FXMLLoader loader = new FXMLLoader(getClass().getResource("WelcomePage.fxml"));
-	loader.setRoot(this);
-	loader.setController(this);
-	loader.load();
-	
-	propertyOnNewButtonClick.set((event) -> {});
-	propertyOnRepositoryButtonClick.set((event) -> {});
+public class WelcomePage extends HBox {
+
+    public WelcomePage() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("WelcomePage.fxml"));
+        loader.setRoot(this);
+        loader.setController(this);
+        loader.load();
+
+        propertyOnNewButtonClick.set((event) -> {
+        });
+        propertyOnRepositoryButtonClick.set((event) -> {
+        });
     }
-    
+
     private final ObjectProperty<EventHandler<ActionEvent>> propertyOnNewButtonClick = new SimpleObjectProperty<EventHandler<ActionEvent>>();
     private final ObjectProperty<EventHandler<ActionEvent>> propertyOnRepositoryButtonClick = new SimpleObjectProperty<EventHandler<ActionEvent>>();
-    
+
     @FXML
-    private void onNewButtonClick(ActionEvent event)
-    {
-	propertyOnNewButtonClick.get().handle(event);
+    private void onNewButtonClick(ActionEvent event) {
+        propertyOnNewButtonClick.get().handle(event);
     }
-    
+
     @FXML
-    private void onRepositoryButtonClick(ActionEvent event)
-    {
-	propertyOnRepositoryButtonClick.get().handle(event);
+    private void onRepositoryButtonClick(ActionEvent event) {
+        propertyOnRepositoryButtonClick.get().handle(event);
     }
-    
-    public void setOnNewButtonClick(EventHandler<ActionEvent> handler)
-    {
-	propertyOnNewButtonClick.set(handler);
+
+    public void setOnNewButtonClick(EventHandler<ActionEvent> handler) {
+        propertyOnNewButtonClick.set(handler);
     }
-    
-    public void setOnRepositoryButtonClick(EventHandler<ActionEvent> handler)
-    {
-	propertyOnRepositoryButtonClick.set(handler);
+
+    public void setOnRepositoryButtonClick(EventHandler<ActionEvent> handler) {
+        propertyOnRepositoryButtonClick.set(handler);
     }
 }

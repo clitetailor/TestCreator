@@ -30,8 +30,7 @@ public class MainWindowController implements Initializable {
         TestEditor testEditor = new TestEditor();
         HBox.setHgrow(testEditor, Priority.ALWAYS);
 
-        testEditor.setOnCloseButtonClick((event)
-                -> {
+        testEditor.setOnCloseButtonClick((event) -> {
             try {
                 this.showWelcomePage();
             } catch (IOException ex) {
@@ -47,14 +46,21 @@ public class MainWindowController implements Initializable {
         RepositoryEditor repositoryEditor = new RepositoryEditor();
         HBox.setHgrow(repositoryEditor, Priority.ALWAYS);
 
+        repositoryEditor.setOnCloseButtonClick((event) -> {
+            try {
+                this.showWelcomePage();
+            } catch (IOException ex) {
+                Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+
         mainPane.getChildren().clear();
         mainPane.getChildren().add(repositoryEditor);
     }
 
     private void showWelcomePage() throws IOException {
         WelcomePage welcomePage = new WelcomePage();
-        welcomePage.setOnNewButtonClick((event)
-                -> {
+        welcomePage.setOnNewButtonClick((event) -> {
             try {
                 this.openTestEditor();
             } catch (IOException ex) {
@@ -62,8 +68,7 @@ public class MainWindowController implements Initializable {
             }
         });
 
-        welcomePage.setOnRepositoryButtonClick((event)
-                -> {
+        welcomePage.setOnRepositoryButtonClick((event) -> {
             try {
                 this.openRepositoryEditor();
             } catch (IOException ex) {

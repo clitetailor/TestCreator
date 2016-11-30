@@ -8,6 +8,7 @@ package gui;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.VBox;
 
@@ -17,25 +18,38 @@ import javafx.scene.layout.VBox;
  * @author ducnh
  */
 public class TestGeneratorDialog extends VBox {
+
     public TestGeneratorDialog() throws IOException {
-	FXMLLoader loader = new FXMLLoader(getClass().getResource("TestGeneratorDialog.fxml"));
-	loader.setRoot(this);
-	loader.setController(this);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("TestGeneratorDialog.fxml"));
+        loader.setRoot(this);
+        loader.setController(this);
         loader.load();
     }
-    
-    EventHandler<ActionEvent> addEventHandler = new EventHandler<ActionEvent>() {
-        @Override
-        public void handle(ActionEvent event) {
-            
-        }
+
+    private EventHandler<ActionEvent> addEventHandler = (ActionEvent event) -> {
     };
-    
+    private EventHandler<ActionEvent> cancelEventHandler = (ActionEvent event) -> {
+    };
+
     public void setOnAddButtonClick(EventHandler<ActionEvent> handler) {
         this.addEventHandler = handler;
     }
-    
+
+    @FXML
     private void onAddButtonClick(ActionEvent event) {
         this.addEventHandler.handle(event);
+    }
+
+    public void setOnCancelButtonClick(EventHandler<ActionEvent> handler) {
+        this.cancelEventHandler = handler;
+    }
+
+    @FXML
+    private void onCancelButtonClick(ActionEvent event) {
+        this.cancelEventHandler.handle(event);
+    }
+
+    public void getQuestions() {
+
     }
 }

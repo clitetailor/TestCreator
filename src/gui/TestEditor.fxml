@@ -58,6 +58,18 @@
                         </ImageView>
                      </graphic>
                   </Button>
+                  <Button layoutX="20.0" layoutY="120.0" mnemonicParsing="false" onAction="#onSearchButtonClick" prefHeight="40.0" prefWidth="40.0" styleClass="activityButton" textAlignment="CENTER" wrapText="true">
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <viewport>
+                              <Rectangle2D height="24.0" width="24.0" />
+                           </viewport>
+                           <image>
+                              <Image url="@assets/search.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                   <Button layoutX="20.0" layoutY="70.0" mnemonicParsing="false" onAction="#onGenerateButtonClick" prefHeight="40.0" prefWidth="40.0" styleClass="activityButton" textAlignment="CENTER" wrapText="true">
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
