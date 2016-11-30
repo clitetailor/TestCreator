@@ -6,6 +6,7 @@
 package gui;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -13,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import objs.Question;
 
 /**
  * FXML Controller class
@@ -31,9 +33,11 @@ public class RepositoryEditor extends HBox {
     }
 
     @FXML
-    private VBox questionForm;
+    private QuestionForm questionForm;
     @FXML
     private ScrollPane scrollPane;
+    @FXML
+    private VBox questionVBox;
 
     @FXML
     private void onAddButtonClick(ActionEvent event) {
@@ -41,6 +45,14 @@ public class RepositoryEditor extends HBox {
         this.questionForm.setManaged(true);
 
         this.scrollPane.setVvalue(0.0);
+    }
+    
+    private void showQuestions(ArrayList<Question> questions) throws IOException {
+        this.questionVBox.getChildren().clear();
+        for (Question question: questions) {
+            QuestionBox questionBox = new QuestionBox(question);
+            this.questionVBox.getChildren().add(questionBox);
+        }
     }
 
     public EventHandler<ActionEvent> closeEventHandler = (ActionEvent event) -> {

@@ -21,11 +21,6 @@ public class EssayQuestion extends Question {
 
     }
     
-    public EssayQuestion(String description, String answer) {
-        this.description = description;
-        this.answer = answer;
-    }
-    
     private String description;
     private String answer;
 

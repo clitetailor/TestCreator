@@ -97,11 +97,11 @@ public class QuestionBox extends VBox {
             for (ChoiceAnswer answer : choiceQuestion.getAnswers()) {
                 AnchorPane anchorPane = new AnchorPane();
                 Label answerLabel = new Label(answer.getContent());
+                answerLabel.getStyleClass().add("content");
 
                 AnchorPane.setLeftAnchor(answerLabel, 0.0);
                 AnchorPane.setRightAnchor(answerLabel, 0.0);
                 AnchorPane.setTopAnchor(answerLabel, 0.0);
-
 
                 anchorPane.getChildren().add(answerLabel);
 
