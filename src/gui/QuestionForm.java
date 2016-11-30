@@ -21,6 +21,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import objs.ChoiceAnswer;
 import objs.ChoiceQuestion;
 import objs.EssayQuestion;
 import objs.Question;
@@ -131,5 +132,49 @@ public class QuestionForm extends VBox
 	{
 	    return null;
 	}
+    }
+    
+    public void resetContent()
+    {
+	this.questionTextArea.setText("");
+	this.answerTextArea.setText("");
+	this.descriptionTextArea.setText("");
+	this.choiceAnswerVBox.getChildren().clear();
+    }
+    
+    public void setQuestion(Question question) throws IOException
+    {
+	this.resetContent();
+	
+	if (question instanceof EssayQuestion)
+	{
+	    tabPane.getSelectionModel().select(0);
+	    
+	    EssayQuestion essayQuestion = (EssayQuestion) question;
+	    
+	    questionTextArea.setText(essayQuestion.content);
+	    answerTextArea.setText(essayQuestion.answer);
+	    descriptionTextArea.setText(essayQuestion.description);    
+	}
+	
+	if (question instanceof ChoiceQuestion)
+	{    
+	    tabPane.getSelectionModel().select(1);
+	    
+	    ChoiceQuestion choiceQuestion = (ChoiceQuestion) question;
+	    
+	    this.choiceAnswerVBox.getChildren().clear();
+	    
+	    questionTextArea.setText(choiceQuestion.content);
+	    
+	    for (ChoiceAnswer answer: choiceQuestion.answers)
+	    {
+		ChoiceAnswerBox choiceAnswerBox = new ChoiceAnswerBox();
+		choiceAnswerBox.setAnswer(answer);
+		
+		this.choiceAnswerVBox.getChildren().add(choiceAnswerBox);
+	    }
+	}
+	
     }
 }

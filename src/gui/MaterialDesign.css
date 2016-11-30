@@ -8,6 +8,7 @@ and open the template in the editor.
     Author     : ducnh
 */
 
+/*Material Button*/
 
 .circleMaterialButton {
     -fx-background-radius: 50%;
@@ -45,32 +46,32 @@ and open the template in the editor.
     -fx-text-fill: white;
 }
 
-
-
+/*Activity Bar*/
 
 .activityBar {
     -fx-padding: 10px;
     -fx-spacing: 10px;
 }
 
-    .activityButton {
-        -fx-border-radius: 8px;
-        -fx-background-radius: 8px;
-        
-        -fx-background-color: transparent;
-        
-        -fx-font-weight: bold;
-        -fx-font-size: 11;
-        
-        -fx-padding: 0;
-        -fx-background-insets: 0;
-    }
+.activityButton {
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
 
-    .activityButton:hover {
-        -fx-background-color: #ddd;
-        -fx-text-fill: white;
-    }
+    -fx-background-color: transparent;
 
+    -fx-font-weight: bold;
+    -fx-font-size: 11;
+
+    -fx-padding: 0;
+    -fx-background-insets: 0;
+}
+
+.activityButton:hover {
+    -fx-background-color: #ddd;
+    -fx-text-fill: white;
+}
+
+/*Input*/
     
 .input
 {
@@ -81,19 +82,19 @@ and open the template in the editor.
     -fx-border-color: #ccc;
 }
 
-    .input .scroll-pane
-    {
-        -fx-background-color: transparent;
-        -fx-border-color: transparent;
-    }
+.input .scroll-pane
+{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
 
-    .input .scroll-pane .content
-    {
-        -fx-background-color: white;
-        -fx-border-color: transparent;
-    }
+.input .scroll-pane .content
+{
+    -fx-background-color: white;
+    -fx-border-color: transparent;
+}
 
-
+/*Tag*/
 
 .tag
 {
@@ -105,51 +106,162 @@ and open the template in the editor.
     -fx-font-weight: bold;
 }
 
+/*Scroll Pane*/
 
 .scrollPane:focused {
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
 }
 
-    .scrollPane > .scroll-bar {
-        -fx-background-color: transparent
-    }
+.scrollPane > .scroll-bar {
+    -fx-background-color: transparent
+}
 
-    .scrollPane > .scroll-bar > .track {
-        -fx-background-color: transparent;
-        -fx-padding: 5;
-    }
-    
-    .scrollPane > .scroll-bar:horizontal > .increment-button,
-    .scrollPane > .scroll-bar:horizontal > .decrement-button {
-        -fx-background-color: transparent;
-        -fx-background-radius: 0;
-    }
-    
-    .scrollPane > .scroll-bar:vertical > .increment-button,
-    .scrollPane > .scroll-bar:vertical > .decrement-button {
-        -fx-background-color: transparent;
-        -fx-background-radius: 0;
-    }
-    
-    .scrollPane > .scroll-bar > .thumb {
-        -fx-background-color: transparent;
-        -fx-background-radius: 0;
-        -fx-background-insets: 1;
-    }
-    
-    .scrollPane:hover > .scroll-bar > .thumb {
-        -fx-background-color: dodgerblue;
-    }
-    
-    .scrollPane > .scroll-bar > .decrement-button,
-    .scrollPane > .scroll-bar > .increment-button {
-        
-    }
-    
-    .scrollPane > .scroll-bar > .decrement-button > .decrement-arrow,
-    .scrollPane > .scroll-bar > .increment-button > .increment-arrow {
-        -fx-shape: null;
-        -fx-padding: 2;
-        -fx-background-color: transparent;
-    }
+.scrollPane > .scroll-bar > .track {
+    -fx-background-color: transparent;
+    -fx-padding: 5;
+}
+
+.scrollPane > .scroll-bar:horizontal > .increment-button,
+.scrollPane > .scroll-bar:horizontal > .decrement-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+}
+
+.scrollPane > .scroll-bar:vertical > .increment-button,
+.scrollPane > .scroll-bar:vertical > .decrement-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+}
+
+.scrollPane > .scroll-bar > .thumb {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+    -fx-background-insets: 1;
+}
+
+.scrollPane:hover > .scroll-bar > .thumb {
+    -fx-background-color: dodgerblue;
+}
+
+.scrollPane > .scroll-bar > .decrement-button,
+.scrollPane > .scroll-bar > .increment-button {
+
+}
+
+.scrollPane > .scroll-bar > .decrement-button > .decrement-arrow,
+.scrollPane > .scroll-bar > .increment-button > .increment-arrow {
+    -fx-shape: null;
+    -fx-padding: 2;
+    -fx-background-color: transparent;
+}
+
+
+.scroll-pane:focused {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+.scroll-pane > .scroll-bar {
+    -fx-background-color: transparent
+}
+
+.scroll-pane > .scroll-bar > .track {
+    -fx-background-color: transparent;
+    -fx-padding: 5;
+}
+
+.scroll-pane > .scroll-bar:horizontal > .increment-button,
+.scroll-pane > .scroll-bar:horizontal > .decrement-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+}
+
+.scroll-pane > .scroll-bar:vertical > .increment-button,
+.scroll-pane > .scroll-bar:vertical > .decrement-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+}
+
+.scroll-pane > .scroll-bar > .thumb {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+    -fx-background-insets: 1;
+}
+
+.scroll-pane:hover > .scroll-bar > .thumb {
+    -fx-background-color: dodgerblue;
+}
+
+.scroll-pane > .scroll-bar > .decrement-button,
+.scroll-pane > .scroll-bar > .increment-button {
+
+}
+
+.scroll-pane > .scroll-bar > .decrement-button > .decrement-arrow,
+.scrollPane > .scroll-bar > .increment-button > .increment-arrow {
+    -fx-shape: null;
+    -fx-padding: 2;
+    -fx-background-color: transparent;
+}
+
+/*Form*/
+
+.form {
+    -fx-background-radius: 15;
+    -fx-padding: 5 20 20 20;
+    -fx-spacing: 10;
+    -fx-border-radius: 15;
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 3, 0, 0, 2);
+    -fx-text-fill: #444 !important;
+}
+
+.form .title {
+    -fx-font-weight: bold;
+    -fx-padding: 10 0 0 0;
+}
+
+.form .content{
+    -fx-border-color: #ddd;
+    -fx-padding: 5;
+    -fx-border-radius: 3;
+    -fx-background-radius: 3;
+}
+
+/*Container*/
+
+.container {
+    -fx-background-color: white;
+    -fx-spacing: 20;
+    -fx-padding: 30 40 30 40;
+}
+
+.tabPane .tab-header-area .tab-header-background {
+    -fx-background-color: transparent;
+}
+
+.tabPane .tab {
+    -fx-background-color: dodgerblue;
+    -fx-border-radius: 3px;
+    -fx-background-radius: 3px;
+    -fx-font-weight: bold;
+}
+
+.tabPane .tab * {
+    -fx-text-fill: white;
+}
+
+.anchorPane {
+    -fx-background-color: #ddd;
+}
+
+/*Context Tool*/
+
+.contextTool {
+    -fx-spacing: 5px;
+}
+
+.contextButton {
+    -fx-background-color: transparent;
+}

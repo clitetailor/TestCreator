@@ -22,63 +22,58 @@ import objs.ChoiceAnswer;
  *
  * @author ducnh
  */
-public class ChoiceAnswerBox extends VBox
-{
-    public ChoiceAnswerBox() throws IOException
-    {
-	FXMLLoader loader = new FXMLLoader(getClass().getResource("ChoiceAnswerBox.fxml"));
-	loader.setRoot(this);
-	loader.setController(this);
-	
-	loader.load();
-	
-	this.setOnDeleteButtonClick((event) -> {});
+public class ChoiceAnswerBox extends VBox {
+
+    public ChoiceAnswerBox() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ChoiceAnswerBox.fxml"));
+        loader.setRoot(this);
+        loader.setController(this);
+
+        loader.load();
+
+        this.setOnDeleteButtonClick((event) -> {
+        });
     }
-    
-    
-    @FXML private Button trueFalseButton;
-    @FXML private TextArea answerTextArea;
-    
-    public ChoiceAnswer getChoiceAnswer()
-    {
-	ChoiceAnswer choiceAnswer;
-	
-	if (this.trueFalseButton.getText().equals("true"))
-	{
-	    choiceAnswer = new ChoiceAnswer(this.answerTextArea.getText(), true);
-	}
-	else
-	{
-	    choiceAnswer = new ChoiceAnswer(this.answerTextArea.getText(), false);
-	}
-	
-	return choiceAnswer;
+
+    @FXML
+    private Button trueFalseButton;
+    @FXML
+    private TextArea answerTextArea;
+
+    public ChoiceAnswer getChoiceAnswer() {
+        ChoiceAnswer choiceAnswer;
+
+        if (this.trueFalseButton.getText().equals("true")) {
+            choiceAnswer = new ChoiceAnswer(this.answerTextArea.getText(), true);
+        } else {
+            choiceAnswer = new ChoiceAnswer(this.answerTextArea.getText(), false);
+        }
+
+        return choiceAnswer;
     }
-    
-    
+
     private final ObjectProperty<EventHandler<ActionEvent>> propertyOnDeleteButtonClick = new SimpleObjectProperty<EventHandler<ActionEvent>>();
-    
-    public void setOnDeleteButtonClick(EventHandler<ActionEvent> handler)
-    {
-	this.propertyOnDeleteButtonClick.set(handler);
+
+    public void setOnDeleteButtonClick(EventHandler<ActionEvent> handler) {
+        this.propertyOnDeleteButtonClick.set(handler);
     }
-    
+
     @FXML
-    private void onDeleteButtonClick(ActionEvent event)
-    {
-	this.propertyOnDeleteButtonClick.get().handle(event);
+    private void onDeleteButtonClick(ActionEvent event) {
+        this.propertyOnDeleteButtonClick.get().handle(event);
     }
-    
+
     @FXML
-    private void onTagButtonClick(ActionEvent event)
-    {
-	if (this.trueFalseButton.getText().equals("true"))
-	{
-	    this.trueFalseButton.setText("false");
-	}
-	else
-	{
-	    this.trueFalseButton.setText("true");
-	}
+    private void onTagButtonClick(ActionEvent event) {
+        if (this.trueFalseButton.getText().equals("true")) {
+            this.trueFalseButton.setText("false");
+        } else {
+            this.trueFalseButton.setText("true");
+        }
+    }
+
+    public void setAnswer(ChoiceAnswer answer) {
+        this.trueFalseButton.setText(answer.isTrue ? "true" : "false");
+        this.answerTextArea.setText(answer.content);
     }
 }

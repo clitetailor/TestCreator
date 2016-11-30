@@ -11,7 +11,7 @@
 
 <fx:root prefHeight="0.0" prefWidth="404.0" type="VBox" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox alignment="CENTER_RIGHT" prefHeight="38.0" prefWidth="404.0" styleClass="contextTool">
+      <HBox alignment="CENTER_RIGHT" prefHeight="38.0" prefWidth="404.0" styleClass="contextTool" stylesheets="@MaterialDesign.css">
          <children>
             <Button fx:id="trueFalseButton" mnemonicParsing="false" onAction="#onTagButtonClick" styleClass="tag" text="true" />
             <Button mnemonicParsing="false" onAction="#onDeleteButtonClick" styleClass="contextButton">

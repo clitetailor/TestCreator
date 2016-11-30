@@ -12,7 +12,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -21,42 +20,32 @@ import javafx.scene.layout.VBox;
  *
  * @author ducnh
  */
-public class RepositoryEditor extends HBox
-{
-    
-    public RepositoryEditor() throws IOException
-    {
-	FXMLLoader loader = new FXMLLoader(getClass().getResource("RepositoryEditor.fxml"));
-	
-	loader.setRoot(this);
-	loader.setController(this);
-	loader.load();
+public class RepositoryEditor extends HBox {
+
+    public RepositoryEditor() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("RepositoryEditor.fxml"));
+
+        loader.setRoot(this);
+        loader.setController(this);
+        loader.load();
     }
-    
-    
+
     @FXML
     VBox questionAnchorPane;
-    
-    
-    
+
     @FXML
-    private void onAddButtonClick(ActionEvent event)
-    {
-	
+    private void onAddButtonClick(ActionEvent event) {
+
     }
-    
-    
-    
+
     public final ObjectProperty<EventHandler<ActionEvent>> propertyOnCloseButtonClick = new SimpleObjectProperty<EventHandler<ActionEvent>>();
-    
-    public void setOnCloseButtonClick(EventHandler<ActionEvent> handler)
-    {
-	propertyOnCloseButtonClick.set(handler);
+
+    public void setOnCloseButtonClick(EventHandler<ActionEvent> handler) {
+        propertyOnCloseButtonClick.set(handler);
     }
-    
+
     @FXML
-    private void onCloseButtonClick(ActionEvent event)
-    {
-	propertyOnCloseButtonClick.get().handle(event);
+    private void onCloseButtonClick(ActionEvent event) {
+        propertyOnCloseButtonClick.get().handle(event);
     }
 }

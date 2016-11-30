@@ -11,10 +11,10 @@ package objs;
  */
 public class EssayQuestion extends Question
 {
-    public EssayQuestion(String question, String description, String answer)
+    public EssayQuestion(String question, String answer, String description)
     {
 	this.content = new String(question);
-	this.description = new String(question);
+	this.description = new String(description);
 	this.answer = new String(answer);
     }
     

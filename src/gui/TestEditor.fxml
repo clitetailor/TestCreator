@@ -2,7 +2,6 @@
 
 <?import gui.QuestionForm?>
 <?import java.lang.String?>
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
@@ -15,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root alignment="CENTER" prefHeight="720.0" prefWidth="1200.0" styleClass="testEditor" type="HBox" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root alignment="CENTER" prefHeight="720.0" prefWidth="1200.0" styleClass="testEditor" stylesheets="@MaterialDesign.css" type="HBox" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <StackPane alignment="TOP_LEFT" HBox.hgrow="ALWAYS">
          <children>
@@ -27,6 +26,7 @@
                      </padding>
                      <children>
                         <QuestionForm fx:id="questionForm" maxHeight="1.7976931348623157E308" visible="false" VBox.vgrow="ALWAYS" />
+                        <QuestionForm fx:id="questionEditForm" maxHeight="1.7976931348623157E308" visible="false" VBox.vgrow="ALWAYS" />
                         <VBox fx:id="questionVBox" alignment="TOP_CENTER" spacing="20.0" VBox.vgrow="ALWAYS" />
                      </children>
                   </VBox>
@@ -34,7 +34,7 @@
             </ScrollPane>
             <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="60.0" styleClass="activityBar" StackPane.alignment="TOP_LEFT">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="activityButton" textAlignment="CENTER" wrapText="true">
+                  <Button mnemonicParsing="false" onAction="#onPrintButtonClick" prefHeight="40.0" prefWidth="40.0" styleClass="activityButton" textAlignment="CENTER" wrapText="true">
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <viewport>
@@ -46,7 +46,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="activityButton" textAlignment="CENTER" wrapText="true">
+                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onSaveButtonClick" prefHeight="40.0" prefWidth="40.0" styleClass="activityButton" textAlignment="CENTER" wrapText="true">
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <viewport>
@@ -58,14 +58,14 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button layoutX="10.0" layoutY="66.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="activityButton" textAlignment="CENTER" wrapText="true">
+                  <Button layoutX="20.0" layoutY="70.0" mnemonicParsing="false" onAction="#onGenerateButtonClick" prefHeight="40.0" prefWidth="40.0" styleClass="activityButton" textAlignment="CENTER" wrapText="true">
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <viewport>
                               <Rectangle2D height="24.0" width="24.0" />
                            </viewport>
                            <image>
-                              <Image url="@assets/attach.png" />
+                              <Image url="@assets/generator.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -106,8 +106,4 @@
          </children>
       </StackPane>
    </children>
-   <stylesheets>
-      <URL value="@TestEditor.css" />
-      <URL value="@MaterialDesign.css" />
-   </stylesheets>
 </fx:root>
