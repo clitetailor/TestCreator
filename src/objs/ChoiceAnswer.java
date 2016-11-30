@@ -9,8 +9,13 @@ package objs;
  *
  * @author ducnh
  */
-public class ChoiceAnswer
-{
+public class ChoiceAnswer {
+
+    public ChoiceAnswer(String answer, boolean isTrue) {
+        this.content = answer;
+        this.isTrue = isTrue;
+    }
+
     private int id;
     private boolean isTrue;
     private String content;
@@ -35,7 +40,7 @@ public class ChoiceAnswer
         this.id = id;
     }
 
-    public boolean isIsTrue() {
+    public boolean isTrue() {
         return isTrue;
     }
 

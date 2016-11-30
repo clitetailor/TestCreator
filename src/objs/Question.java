@@ -11,10 +11,10 @@ package objs;
  */
 public abstract class Question
 {
-    private int id;
-    private String content;
-    private String subject;
-    private int level;
+    protected int id;
+    protected String content;
+    protected String subject;
+    protected int level;
 
     public int getId() {
         return id;
