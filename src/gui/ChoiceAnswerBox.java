@@ -73,7 +73,7 @@ public class ChoiceAnswerBox extends VBox {
     }
 
     public void setAnswer(ChoiceAnswer answer) {
-        this.trueFalseButton.setText(answer.isTrue ? "true" : "false");
-        this.answerTextArea.setText(answer.content);
+        this.trueFalseButton.setText(answer.isTrue() ? "true" : "false");
+        this.answerTextArea.setText(answer.getContent());
     }
 }

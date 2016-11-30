@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/D:/Clite%20Tailor/Code/Java/Projects/TestCreator/src/gui/ChoiceAnswerBox.java</file>
             <file>file:/D:/Clite%20Tailor/Code/Java/Projects/TestCreator/src/gui/MainWindowController.java</file>
             <file>file:/D:/Clite%20Tailor/Code/Java/Projects/TestCreator/src/gui/MaterialDesign.css</file>
@@ -13,6 +14,14 @@
             <file>file:/D:/Clite%20Tailor/Code/Java/Projects/TestCreator/src/gui/RepositoryEditor.java</file>
             <file>file:/D:/Clite%20Tailor/Code/Java/Projects/TestCreator/src/gui/QuestionBox.java</file>
             <file>file:/D:/Clite%20Tailor/Code/Java/Projects/TestCreator/src/gui/QuestionPickerDialog.java</file>
+=======
+            <file>file:/D:/_Project_Program/Netbean_Java/TestCreator/src/objs/EssayQuestion.java</file>
+            <file>file:/D:/_Project_Program/Netbean_Java/TestCreator/src/objs/ChoiceQuestion.java</file>
+            <file>file:/D:/_Project_Program/Netbean_Java/TestCreator/src/gui/TestCreator.java</file>
+            <file>file:/D:/_Project_Program/Netbean_Java/TestCreator/src/database/Database.java</file>
+            <file>file:/D:/_Project_Program/Netbean_Java/TestCreator/src/objs/ChoiceAnswer.java</file>
+            <file>file:/D:/_Project_Program/Netbean_Java/TestCreator/src/objs/Question.java</file>
+>>>>>>> database
         </group>
     </open-files>
 </project-private>

@@ -70,7 +70,7 @@ public class QuestionBox extends VBox {
     public void setQuestion(Question question) {
         this.question = question;
 
-        questionContentLabel.setText(question.content);
+        questionContentLabel.setText(question.getContent());
 
         if (question instanceof EssayQuestion) {
             EssayQuestion essayQuestion = (EssayQuestion) question;
@@ -80,8 +80,8 @@ public class QuestionBox extends VBox {
             this.multichoicePane.setVisible(false);
             this.multichoicePane.setManaged(false);
 
-            this.answerContentLabel.setText(essayQuestion.answer);
-            this.descriptionContentLabel.setText(essayQuestion.description);
+            this.answerContentLabel.setText(essayQuestion.getAnswer());
+            this.descriptionContentLabel.setText(essayQuestion.getDescription());
         }
 
         if (question instanceof ChoiceQuestion) {
@@ -94,17 +94,14 @@ public class QuestionBox extends VBox {
             this.multichoicePane.setVisible(true);
             this.multichoicePane.setManaged(true);
 
-            for (ChoiceAnswer answer : choiceQuestion.answers) {
+            for (ChoiceAnswer answer : choiceQuestion.getAnswers()) {
                 AnchorPane anchorPane = new AnchorPane();
-                Label answerLabel = new Label(answer.content);
-
-                System.out.println(answer.content);
+                Label answerLabel = new Label(answer.getContent());
 
                 AnchorPane.setLeftAnchor(answerLabel, 0.0);
                 AnchorPane.setRightAnchor(answerLabel, 0.0);
                 AnchorPane.setTopAnchor(answerLabel, 0.0);
 
-                answerLabel.getStyleClass().add("content");
 
                 anchorPane.getChildren().add(answerLabel);
 

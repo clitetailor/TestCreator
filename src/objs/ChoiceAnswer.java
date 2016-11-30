@@ -9,15 +9,50 @@ package objs;
  *
  * @author ducnh
  */
-public class ChoiceAnswer
-{
-    public ChoiceAnswer(String answer, boolean isTrue)
-    {
-	this.content = answer;
-	this.isTrue = isTrue;
+public class ChoiceAnswer {
+
+    public ChoiceAnswer(String answer, boolean isTrue) {
+        this.content = answer;
+        this.isTrue = isTrue;
     }
-    
-    public int id;
-    public boolean isTrue;
-    public String content;
+
+    private int id;
+    private boolean isTrue;
+    private String content;
+
+    public ChoiceAnswer() {
+        this.id = 0;
+        this.isTrue = false;
+        this.content = "";
+    }
+
+    public ChoiceAnswer(int id, boolean isTrue, String content) {
+        this.id = id;
+        this.isTrue = isTrue;
+        this.content = content;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public boolean isTrue() {
+        return isTrue;
+    }
+
+    public void setIsTrue(boolean isTrue) {
+        this.isTrue = isTrue;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
 }

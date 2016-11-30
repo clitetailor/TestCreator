@@ -11,32 +11,38 @@ import java.util.ArrayList;
  *
  * @author ducnh
  */
-public class ChoiceQuestion extends Question
-{
-    public ChoiceQuestion(String question, String... answers)
-    {
-	this.content = new String(question);
-	
-	this.answers = new ArrayList<ChoiceAnswer>();
-	
-	for (String answer: answers)
-	{
-	    this.answers.add(new ChoiceAnswer(answer, true));
-	}
+public class ChoiceQuestion extends Question {
+
+    public ChoiceQuestion(String question, String... answers) {
+        this.content = new String(question);
+
+        this.answers = new ArrayList<ChoiceAnswer>();
+
+        for (String answer : answers) {
+            this.answers.add(new ChoiceAnswer(answer, true));
+        }
     }
-    
-    public ChoiceQuestion()
-    {
-	this.answers = new ArrayList<ChoiceAnswer>();
+
+    public ChoiceQuestion() {
+        this.answers = new ArrayList<ChoiceAnswer>();
     }
-    
-    public ChoiceQuestion(String text, ArrayList choiceAnswerArrayList)
-    {
-	this.content = text;
-	this.answers = choiceAnswerArrayList;
+
+    public ChoiceQuestion(String text, ArrayList choiceAnswerArrayList) {
+        this.content = text;
+        this.answers = choiceAnswerArrayList;
     }
-    
-    
-    
-    public final ArrayList<ChoiceAnswer> answers;
+
+    private ArrayList<ChoiceAnswer> answers;
+
+    public ChoiceQuestion(ArrayList<ChoiceAnswer> answers) {
+        this.answers = answers;
+    }
+
+    public ArrayList<ChoiceAnswer> getAnswers() {
+        return answers;
+    }
+
+    public void setAnswers(ArrayList<ChoiceAnswer> answers) {
+        this.answers = answers;
+    }
 }

@@ -154,9 +154,9 @@ public class QuestionForm extends VBox {
 
             EssayQuestion essayQuestion = (EssayQuestion) question;
 
-            questionTextArea.setText(essayQuestion.content);
-            answerTextArea.setText(essayQuestion.answer);
-            descriptionTextArea.setText(essayQuestion.description);
+            questionTextArea.setText(essayQuestion.getContent());
+            answerTextArea.setText(essayQuestion.getAnswer());
+            descriptionTextArea.setText(essayQuestion.getDescription());
         }
 
         if (question instanceof ChoiceQuestion) {
@@ -166,9 +166,9 @@ public class QuestionForm extends VBox {
 
             this.choiceAnswerVBox.getChildren().clear();
 
-            questionTextArea.setText(choiceQuestion.content);
+            questionTextArea.setText(choiceQuestion.getContent());
 
-            for (ChoiceAnswer answer : choiceQuestion.answers) {
+            for (ChoiceAnswer answer : choiceQuestion.getAnswers()) {
                 ChoiceAnswerBox choiceAnswerBox = new ChoiceAnswerBox();
                 choiceAnswerBox.setAnswer(answer);
 
