@@ -17,8 +17,8 @@
    <children>
       <Label fx:id="subjectLabel" styleClass="title" text="Subject" />
       <TextField fx:id="subjectTextField" styleClass="input" />
-      <Label styleClass="title" text="Level" />
-      <ChoiceBox prefHeight="25.0" prefWidth="113.0" styleClass="input" />
+      <Label fx:id="levelLabel" styleClass="title" text="Level" />
+      <ChoiceBox fx:id="levelChoiceBox" prefHeight="25.0" prefWidth="113.0" styleClass="input" />
       <Label styleClass="title" text="Question">
          <VBox.margin>
             <Insets />

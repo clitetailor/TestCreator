@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import gui.QuestionForm?>
+<?import gui.QuestionSearchBox?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
@@ -10,7 +11,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -26,6 +26,7 @@
                         <Insets bottom="30.0" left="40.0" right="40.0" top="30.0" />
                      </padding>
                      <children>
+                        <QuestionSearchBox />
                         <QuestionForm fx:id="questionForm" visible="false" />
                         
                         <AnchorPane fx:id="questionAnchorPane" prefHeight="200.0" prefWidth="200.0" />
@@ -43,7 +44,6 @@
             </Button>
             <VBox maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="60.0">
                <children>
-                  <Pane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
                   <Button layoutX="10.0" layoutY="122.0" mnemonicParsing="false" onAction="#onCloseButtonClick" prefHeight="40.0" prefWidth="40.0" styleClass="activityButton" textAlignment="CENTER" wrapText="true">
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0" onDragDetected="#onCloseButtonClick" pickOnBounds="true" preserveRatio="true">

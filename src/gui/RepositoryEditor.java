@@ -20,13 +20,14 @@ import javafx.scene.layout.VBox;
  * @author ducnh
  */
 public class RepositoryEditor extends HBox {
+
     public RepositoryEditor() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("RepositoryEditor.fxml"));
         loader.setRoot(this);
         loader.setController(this);
         loader.load();
-        
-	this.questionForm.setManaged(false);
+
+        this.questionForm.setManaged(false);
     }
 
     @FXML
@@ -37,12 +38,13 @@ public class RepositoryEditor extends HBox {
     @FXML
     private void onAddButtonClick(ActionEvent event) {
         this.questionForm.setVisible(true);
-	this.questionForm.setManaged(true);
-        
+        this.questionForm.setManaged(true);
+
         this.scrollPane.setVvalue(0.0);
     }
 
-    public EventHandler<ActionEvent> closeEventHandler = (ActionEvent event) -> { };
+    public EventHandler<ActionEvent> closeEventHandler = (ActionEvent event) -> {
+    };
 
     public void setOnCloseButtonClick(EventHandler<ActionEvent> handler) {
         this.closeEventHandler = handler;

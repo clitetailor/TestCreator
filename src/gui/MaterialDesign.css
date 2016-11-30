@@ -51,11 +51,12 @@ and open the template in the editor.
 .activityBar {
     -fx-padding: 10px;
     -fx-spacing: 10px;
+    -fx-background-color: #ddd;
 }
 
 .activityButton {
-    -fx-border-radius: 8px;
-    -fx-background-radius: 8px;
+    -fx-border-radius: 1px;
+    -fx-background-radius: 1px;
 
     -fx-background-color: transparent;
 
@@ -67,7 +68,7 @@ and open the template in the editor.
 }
 
 .activityButton:hover {
-    -fx-background-color: #ddd;
+    -fx-background-color: #eee;
     -fx-text-fill: white;
 }
 

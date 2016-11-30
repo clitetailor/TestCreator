@@ -9,11 +9,12 @@
     -fx-padding: 8px;
     -fx-text-fill: #ddd;
     -fx-background-color: transparent;
-    -fx-background-radius: 20px;
     -fx-border-color: #ddd;
     -fx-border-width: 2px;
     -fx-min-width: 150px;
-    -fx-border-radius: 20px;
+    
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
 }
 
 .primaryButton:hover {

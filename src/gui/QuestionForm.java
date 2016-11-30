@@ -14,11 +14,11 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import objs.ChoiceAnswer;
@@ -44,12 +44,30 @@ public class QuestionForm extends VBox {
         });
         this.setOnDoneButtonClick((event) -> {
         });
+        
+        this.levelChoiceBox.getItems().setAll(1, 2, 3, 4, 5);
+        this.levelChoiceBox.setValue(1);
     }
 
     @FXML
     private Label subjectLabel;
     @FXML
     private TextField subjectTextField;
+    @FXML
+    private Label levelLabel;
+    @FXML
+    private ChoiceBox levelChoiceBox;
+    
+    public void removeTopPart() {
+        this.subjectLabel.setVisible(false);
+        this.subjectLabel.setManaged(false);
+        this.subjectTextField.setVisible(false);
+        this.subjectTextField.setManaged(false);
+        this.levelLabel.setVisible(false);
+        this.levelLabel.setManaged(false);
+        this.levelChoiceBox.setVisible(false);
+        this.levelChoiceBox.setManaged(false);
+    }
 
     private final ObjectProperty<EventHandler<ActionEvent>> propertyOnDoneButtonClick = new SimpleObjectProperty<EventHandler<ActionEvent>>();
     private final ObjectProperty<EventHandler<ActionEvent>> propertyOnCancelButtonClick = new SimpleObjectProperty<EventHandler<ActionEvent>>();
@@ -157,6 +175,5 @@ public class QuestionForm extends VBox {
                 this.choiceAnswerVBox.getChildren().add(choiceAnswerBox);
             }
         }
-
     }
 }

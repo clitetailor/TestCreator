@@ -81,6 +81,12 @@ public class TestEditor extends HBox {
                 Logger.getLogger(TestEditor.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
+        
+        this.questionEditForm.removeTopPart();
+        this.questionEditForm.setManaged(false);
+        
+        this.questionForm.removeTopPart();
+        this.questionForm.setManaged(false);
     }
 
     @FXML
@@ -94,6 +100,8 @@ public class TestEditor extends HBox {
     private QuestionForm questionEditForm;
     @FXML
     private ScrollPane scrollPane;
+    @FXML
+    private VBox questionFormVBox;
 
     public final ObjectProperty<EventHandler<ActionEvent>> propertyOnCloseButtonClick = new SimpleObjectProperty<EventHandler<ActionEvent>>();
 
