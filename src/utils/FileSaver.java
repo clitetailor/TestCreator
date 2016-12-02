@@ -91,6 +91,7 @@ public class FileSaver {
             
             // put dap an vao
             answerObject.put("content", answer.getContent());
+            answerObject.put("isTrue", answer.isIsTrue());
             answerArray.add(answerObject); // them vao JSONArray
         }
         
@@ -109,7 +110,8 @@ public class FileSaver {
         ArrayList<Question> list = new ArrayList<>();
         try {
             // parser file ve mot JSONArray
-            JSONArray jsonArray = (JSONArray) jsonParser.parse(file);
+            JSONObject dataObject = (JSONObject) jsonParser.parse(file);
+            JSONArray jsonArray = (JSONArray) dataObject.get("data");
             for (int i = 0; i < jsonArray.size(); i++) {
                 // ep kieu ve JSONObject
                 JSONObject questionObject = (JSONObject) jsonArray.get(i);
@@ -126,24 +128,24 @@ public class FileSaver {
                 } else if (type.equals("ChoiceQuestion")) {
                     ChoiceQuestion cq = new ChoiceQuestion();
                     cq.setSubject((String) questionObject.get("subject"));
-                    cq.setId(Integer.parseInt((String) questionObject.get("id")));
-                    cq.setLevel(Integer.parseInt((String) questionObject.get("level")));
+                    cq.setId(((Long) questionObject.get("id")).intValue());
+                    cq.setLevel(((Long) questionObject.get("level")).intValue());
                     cq.setContent((String) questionObject.get("content"));
 
                     // tao mot mang JSONArray de chua cac cau tra loi
                     JSONArray answerArray = (JSONArray) questionObject.get("answers");
-                    JSONObject answerObject = new JSONObject();
                     
-                    // su dung iterator de truy xuat den cac phan tu cua mang answerArray
-                    Iterator<String> iterator = answerArray.iterator();
-                    while (iterator.hasNext()) { // neu trong mang co nhieu phan tu
+                    ArrayList<ChoiceAnswer> answerList = new ArrayList<>();
+                    
+                    for (int j = 0; j < answerArray.size(); ++j) {
+                        JSONObject answerObject = (JSONObject) answerArray.get(j);
                         ChoiceAnswer ca = new ChoiceAnswer();
-                        ca.setId(Integer.parseInt((String) answerObject.get("id")));
-                        ca.setIsTrue((boolean) answerObject.get("isTrue"));
                         ca.setContent((String) answerObject.get("content"));
-                        answerArray.add(ca);
-                        iterator.next();
+                        ca.setIsTrue((boolean) answerObject.get("isTrue"));
+                        answerList.add(ca);
                     }
+                    
+                    cq.setAnswers(answerList);
                     list.add(cq);
                 }
             }
@@ -154,26 +156,28 @@ public class FileSaver {
     }
 
     public static void main(String[] args) throws IOException, FileNotFoundException, ParseException {
-//        ArrayList<Question> list = new ArrayList<>();
-//        ChoiceQuestion choiceQuestion = new ChoiceQuestion();
-//        choiceQuestion.setContent("Cai gi do");
-//        ArrayList<ChoiceAnswer> answers = new ArrayList<ChoiceAnswer>();
-//        answers.add(new ChoiceAnswer(1, true, "Con meo"));
-//        answers.add(new ChoiceAnswer(2, false, "Con chuot"));
-//        choiceQuestion.setAnswers(answers);
-//
-//        JSONObject questionObject = (new FileSaver()).encodeChoiceQuestion(choiceQuestion);
-//        System.out.println(questionObject);
-//        StringWriter out = new StringWriter();
-//        questionObject.writeJSONString(out);
-//
-//        System.out.print(out.toString());
-//        FileSaver fs = new FileSaver();
-////        fs.saveQuestion("C:/Users/admin/Desktop/test2.txt", list);      
-//        for(Question question : fs.readFile("C:/Users/admin/Desktop/test2.txt")) {
-//            System.out.println(question.getId());
-//            System.out.println(question.getSubject());
-//            System.out.println(question.getLevel());
-//        }
+        ArrayList<Question> list = new ArrayList<>();
+        ChoiceQuestion choiceQuestion = new ChoiceQuestion();
+        choiceQuestion.setContent("Cai gi do");
+        ArrayList<ChoiceAnswer> answers = new ArrayList<ChoiceAnswer>();
+        answers.add(new ChoiceAnswer(1, true, "Con meo"));
+        answers.add(new ChoiceAnswer(2, false, "Con chuot"));
+        choiceQuestion.setAnswers(answers);
+
+        JSONObject questionObject = (new FileSaver()).encodeChoiceQuestion(choiceQuestion);
+        System.out.println(questionObject);
+        StringWriter out = new StringWriter();
+        questionObject.writeJSONString(out);
+        
+        list.add(choiceQuestion);
+
+        System.out.print(out.toString());
+        FileSaver fs = new FileSaver();
+        fs.saveQuestion("D:/test.txt", list);      
+        for(Question question : fs.readFile("D:/test.txt")) {
+            System.out.println(question.getId());
+            System.out.println(question.getSubject());
+            System.out.println(question.getLevel());
+        }
     }
 }

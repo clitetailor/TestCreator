@@ -36,7 +36,7 @@ public class ChoiceAnswer
     }
 
     public boolean isIsTrue() {
-        return isTrue;
+        return this.isTrue;
     }
 
     public void setIsTrue(boolean isTrue) {
