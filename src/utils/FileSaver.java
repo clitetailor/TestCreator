@@ -175,9 +175,7 @@ public class FileSaver {
         FileSaver fs = new FileSaver();
         fs.saveQuestion("D:/test.txt", list);      
         for(Question question : fs.readFile("D:/test.txt")) {
-            System.out.println(question.getId());
-            System.out.println(question.getSubject());
-            System.out.println(question.getLevel());
+            System.out.println(question.getContent());
         }
     }
 }
