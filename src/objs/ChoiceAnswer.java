@@ -50,4 +50,10 @@ public class ChoiceAnswer
     public void setContent(String content) {
         this.content = content;
     }
+    
+//    public String print(){
+//        String data = "id: " + getId() + "\n" + "isTrue: " + (isIsTrue() ? "true" : "false") + "\n" + "content: " + getContent() + "\n\n";
+//        return data;
+//    }
+    
 }

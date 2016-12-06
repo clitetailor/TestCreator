@@ -32,4 +32,12 @@ public class ChoiceQuestion extends Question
     public void setAnswers(ArrayList<ChoiceAnswer> answers) {
         this.answers = answers;
     }
+    
+//    public String printf(){
+//        String data = "";
+//        for(int i = 0; i < answers.size(); i++){
+//            data += answers.get(i).print();
+//        }
+//        return data;
+//    }
 }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package utils;
 
 import java.io.FileNotFoundException;
@@ -11,7 +6,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.ArrayList;
-import java.util.Iterator;
 import objs.ChoiceAnswer;
 import objs.ChoiceQuestion;
 import objs.EssayQuestion;
@@ -27,18 +21,19 @@ import org.json.simple.parser.ParseException;
  */
 @SuppressWarnings("unchecked")
 public class FileSaver {
-    
+
     public void saveQuestion(String path, ArrayList<Question> list) throws FileNotFoundException, IOException {
         // tao mot JSONArray
         JSONArray questionArray = new JSONArray();
         for (Question question : list) {
             JSONObject questionObject; // khai bao doi tuong JSONObject
             if (question instanceof EssayQuestion) { // neu la cau hoi tu luan
+                // doi tuong questionObject duoc gan bang doi tuong encodeEssayQuestion 
                 questionObject = this.encodeEssayQuestion((EssayQuestion) question);
                 questionArray.add(questionObject); // them vao JSONArray
             } else if (question instanceof ChoiceQuestion) { // neu la cau hoi trac nghiem
                 questionObject = this.encodeChoiceQuestion((ChoiceQuestion) question);
-                questionArray.add(questionObject); // them vao JSONArray
+                questionArray.add(questionObject);
             } else {
 
             }
@@ -63,7 +58,7 @@ public class FileSaver {
     private JSONObject encodeEssayQuestion(EssayQuestion question) {
         // tao ra mot JSONObject
         JSONObject questionObject = new JSONObject();
-        
+
         // put cac truong cua doi tuong vao JSONObject
         questionObject.put("type", "EssayQuestion");
         questionObject.put("subject", question.getSubject());
@@ -83,18 +78,19 @@ public class FileSaver {
         questionObject.put("id", question.getId());
         questionObject.put("level", question.getLevel());
         questionObject.put("content", question.getContent());
-        
+
         // tao mot JSONAray chua dap an
         JSONArray answerArray = new JSONArray();
         for (ChoiceAnswer answer : question.getAnswers()) { // duyet tu dau den cuoi cua ArrayList
             JSONObject answerObject = new JSONObject();
-            
+
             // put dap an vao
+            answerObject.put("id", answer.getId());
             answerObject.put("content", answer.getContent());
             answerObject.put("isTrue", answer.isIsTrue());
             answerArray.add(answerObject); // them vao JSONArray
         }
-        
+
         // put cac dap an vao JSONArray
         questionObject.put("answers", answerArray);
         return questionObject;
@@ -106,7 +102,7 @@ public class FileSaver {
 
         // tao mot doi tuong FileReader
         FileReader file = new FileReader(path);
-        
+
         ArrayList<Question> list = new ArrayList<>();
         try {
             // parser file ve mot JSONArray
@@ -118,6 +114,8 @@ public class FileSaver {
                 String type = (String) questionObject.get("type");
                 if (type.equals("EssayQuestion")) {
                     EssayQuestion eq = new EssayQuestion();
+                    
+                    // lay cac gia tri cua cau hoi de thiet lap cho doi tuong
                     eq.setSubject((String) questionObject.get("subject"));
                     eq.setId(Integer.parseInt((String) questionObject.get("id")));
                     eq.setLevel(Integer.parseInt((String) questionObject.get("level")));
@@ -128,23 +126,25 @@ public class FileSaver {
                 } else if (type.equals("ChoiceQuestion")) {
                     ChoiceQuestion cq = new ChoiceQuestion();
                     cq.setSubject((String) questionObject.get("subject"));
-                    cq.setId(((Long) questionObject.get("id")).intValue());
-                    cq.setLevel(((Long) questionObject.get("level")).intValue());
+                    cq.setId(Integer.parseInt((String) questionObject.get("id")));
+                    cq.setLevel(Integer.parseInt((String) questionObject.get("level")));
                     cq.setContent((String) questionObject.get("content"));
 
                     // tao mot mang JSONArray de chua cac cau tra loi
                     JSONArray answerArray = (JSONArray) questionObject.get("answers");
-                    
+
                     ArrayList<ChoiceAnswer> answerList = new ArrayList<>();
-                    
+
                     for (int j = 0; j < answerArray.size(); ++j) {
+                        // khai bao doi tuong JSONObject
                         JSONObject answerObject = (JSONObject) answerArray.get(j);
                         ChoiceAnswer ca = new ChoiceAnswer();
+                        ca.setId(Integer.parseInt((String) answerObject.get("id")));
                         ca.setContent((String) answerObject.get("content"));
-                        ca.setIsTrue((boolean) answerObject.get("isTrue"));
+                        ca.setIsTrue(Boolean.parseBoolean((String) answerObject.get("isTrue")));
                         answerList.add(ca);
                     }
-                    
+
                     cq.setAnswers(answerList);
                     list.add(cq);
                 }
@@ -156,26 +156,43 @@ public class FileSaver {
     }
 
     public static void main(String[] args) throws IOException, FileNotFoundException, ParseException {
-        ArrayList<Question> list = new ArrayList<>();
-        ChoiceQuestion choiceQuestion = new ChoiceQuestion();
-        choiceQuestion.setContent("Cai gi do");
-        ArrayList<ChoiceAnswer> answers = new ArrayList<ChoiceAnswer>();
-        answers.add(new ChoiceAnswer(1, true, "Con meo"));
-        answers.add(new ChoiceAnswer(2, false, "Con chuot"));
-        choiceQuestion.setAnswers(answers);
+//        ArrayList<Question> list = new ArrayList<>();
+//        EssayQuestion eq = new EssayQuestion();
+//        eq.setSubject("Van");
+//        eq.setId(4);
+//        eq.setLevel(5);
+//        eq.setContent("Ngo Tat To");
+//        eq.setAnswer("Chi Dau");
+//        eq.setDescription("Tat Den");
 
-        JSONObject questionObject = (new FileSaver()).encodeChoiceQuestion(choiceQuestion);
-        System.out.println(questionObject);
-        StringWriter out = new StringWriter();
-        questionObject.writeJSONString(out);
+//        JSONObject questionObject = (new FileSaver()).encodeChoiceQuestion(choiceQuestion);
+//        System.out.println(questionObject);
+//        StringWriter out = new StringWriter();
+//        questionObject.writeJSONString(out);
+ 
+//        list.add(eq);
+
+//        System.out.print(out.toString());
         
-        list.add(choiceQuestion);
-
-        System.out.print(out.toString());
         FileSaver fs = new FileSaver();
-        fs.saveQuestion("D:/test.txt", list);      
-        for(Question question : fs.readFile("D:/test.txt")) {
-            System.out.println(question.getContent());
+//        fs.saveQuestion("E:/Subject/LTHDT/Project/test7.txt", list);      
+        for (Question cq : fs.readFile("E:/Subject/LTHDT/Project/test2.txt")) {
+            if (cq instanceof ChoiceQuestion) {
+                System.out.println("subject: " + cq.getSubject());
+                System.out.println("id: " + cq.getId());
+                System.out.println("level: " + cq.getLevel());
+                System.out.println("content: " + cq.getContent());
+//                System.out.println("answers:\n" + ((ChoiceQuestion) cq).printf());                
+                System.out.println();
+            } else if (cq instanceof EssayQuestion) {
+                System.out.println("subject: " + cq.getSubject());
+                System.out.println("id: " + cq.getId());
+                System.out.println("level: " + cq.getLevel());
+                System.out.println("content: " + cq.getContent());
+                System.out.println("answer: " + ((EssayQuestion) cq).getAnswer());
+                System.out.println("description: " + ((EssayQuestion) cq).getDescription());
+                System.out.println();
+            }
         }
     }
 }
