@@ -62,12 +62,11 @@ public class FileSaver {
         // put cac truong cua doi tuong vao JSONObject
         questionObject.put("type", "EssayQuestion");
         questionObject.put("subject", question.getSubject());
-        questionObject.put("id", question.getId());
-        questionObject.put("level", question.getLevel());
+        questionObject.put("id", "" + question.getId() + "");
+        questionObject.put("level", "" + question.getLevel() + "");
         questionObject.put("content", question.getContent());
-        questionObject.put("answer", question.getAnswer());
-        questionObject.put("description", question.getDescription());
-
+        questionObject.put("answer", question.getAnswer());          
+        questionObject.put("description", question.getDescription());         
         return questionObject;
     }
 
@@ -75,8 +74,8 @@ public class FileSaver {
         JSONObject questionObject = new JSONObject();
         questionObject.put("type", "ChoiceQuestion");
         questionObject.put("subject", question.getSubject());
-        questionObject.put("id", question.getId());
-        questionObject.put("level", question.getLevel());
+        questionObject.put("id", "" + question.getId() + "");
+        questionObject.put("level", "" + question.getLevel()+ "");
         questionObject.put("content", question.getContent());
 
         // tao mot JSONAray chua dap an
@@ -85,9 +84,9 @@ public class FileSaver {
             JSONObject answerObject = new JSONObject();
 
             // put dap an vao
-            answerObject.put("id", answer.getId());
+            answerObject.put("id", "" + answer.getId() + "");
             answerObject.put("content", answer.getContent());
-            answerObject.put("isTrue", answer.isIsTrue());
+            answerObject.put("isTrue", "" + answer.isIsTrue() + "");
             answerArray.add(answerObject); // them vao JSONArray
         }
 
@@ -158,12 +157,12 @@ public class FileSaver {
     public static void main(String[] args) throws IOException, FileNotFoundException, ParseException {
 //        ArrayList<Question> list = new ArrayList<>();
 //        EssayQuestion eq = new EssayQuestion();
-//        eq.setSubject("Van");
+//        eq.setSubject("Văn");
 //        eq.setId(4);
 //        eq.setLevel(5);
-//        eq.setContent("Ngo Tat To");
-//        eq.setAnswer("Chi Dau");
-//        eq.setDescription("Tat Den");
+//        eq.setContent("Ngô Tất Tố");
+//        eq.setAnswer("Chị Dậu");
+//        eq.setDescription("Tắt đèn");
 
 //        JSONObject questionObject = (new FileSaver()).encodeChoiceQuestion(choiceQuestion);
 //        System.out.println(questionObject);
@@ -172,7 +171,7 @@ public class FileSaver {
  
 //        list.add(eq);
 
-//        System.out.print(out.toString());
+//       System.out.print(out.toString());
         
         FileSaver fs = new FileSaver();
 //        fs.saveQuestion("E:/Subject/LTHDT/Project/test7.txt", list);      
