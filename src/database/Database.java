@@ -73,6 +73,39 @@ public class Database {
         }
         return list;
     }
+    
+    /**
+     * Lấy toàn bộ câu hỏi tự luận theo môn học và độ khó
+     * 
+     * @param subject Tên môn học
+     * @param level Mức độ khó
+     * @return ArrayList chứa các câu hỏi tự luận
+     */
+    public static ArrayList<EssayQuestion> getEssayQuestionsBySubject(String subject, int level) {
+        ArrayList<EssayQuestion> list = new ArrayList<>();
+        try {
+            Statement stmt = conn.createStatement();
+            String query = "SELECT * FROM essayquestion WHERE subject LIKE '" + 
+                    subject + "' and level = " + level;
+            //System.out.println(query);
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                EssayQuestion eq = new EssayQuestion();
+                eq.setId(rs.getInt("essayQuestionId"));
+                eq.setAnswer(rs.getString("answer"));
+                eq.setContent(rs.getString("content"));
+                eq.setDescription(rs.getString("description"));
+                eq.setLevel(level);
+                eq.setSubject(rs.getString("subject"));
+                list.add(eq);
+            }
+        } catch (SQLException ex) {
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+        }
+        return list;
+    }
 
     /**
      * Lấy toàn bộ đáp án của một câu hỏi trắc nghiệm, hàm này được
@@ -139,6 +172,42 @@ public class Database {
         return list;
     }
 
+    /**
+     * Lấy toàn bộ câu hỏi trắc nghiệm theo môn học và độ khó
+     * Lưu ý: phương thức này đã chứa phương thức getChoiceAnswersByChoiceQuestion
+     * lấy mảng chứa các đáp án nên không cần phải gọi thêm
+     * 
+     * @param subject Tên môn học
+     * @param level độ khó
+     * @return ArrayList chứa các câu hỏi Trắc nghiệm
+     */
+    
+    public static ArrayList<ChoiceQuestion> getChoiceQuestionsBySubject(String subject, int level) {
+        ArrayList<ChoiceQuestion> list = new ArrayList<>();
+        try {
+            PreparedStatement stmt = conn.prepareStatement(
+                    "SELECT * FROM choicequestion WHERE subject LIKE ? and level = " + level);
+            stmt.setString(1, subject);
+            //System.out.println(stmt);
+            ResultSet rs = stmt.executeQuery();
+            ChoiceQuestion cq;
+            while (rs.next()) {
+                cq = new ChoiceQuestion();
+                cq.setId(rs.getInt("choiceQuestionId"));
+                cq.setContent(rs.getString("content"));
+                cq.setLevel(level);
+                cq.setSubject(subject);
+                cq.setAnswers(getChoiceAnswersByChoiceQuestion(cq));
+                list.add(cq);
+            }
+        } catch (SQLException ex) {
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+        }
+        return list;
+    }
+    
     /**
      * Lấy toàn bộ danh sách môn học
      * 
