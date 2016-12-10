@@ -13,8 +13,23 @@
       <VBox prefHeight="200.0" prefWidth="100.0" styleClass="form">
          <children>
             <Label styleClass="title" text="Subject" />
-            <TextField styleClass="input" />
-            <HBox prefHeight="20.0" prefWidth="480.0">
+            <TextField fx:id="subjectTextField" styleClass="input" />
+            <HBox prefHeight="20.0" prefWidth="480.0" spacing="10.0">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
+                  <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label styleClass="title" text="ESSAY QUESTION" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="250.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label styleClass="title" text="CHOICE QUESTION" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox layoutX="30.0" layoutY="89.0" prefHeight="20.0" prefWidth="480.0" spacing="10.0">
                <children>
                   <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                      <children>
@@ -23,12 +38,17 @@
                   </VBox>
                   <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <TextField styleClass="input" text="0" />
+                        <TextField fx:id="essayLevel1" styleClass="input" text="0" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="250.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <TextField fx:id="choiceLevel1" styleClass="input" text="0" />
                      </children>
                   </VBox>
                </children>
             </HBox>
-            <HBox layoutX="30.0" layoutY="89.0" prefHeight="20.0" prefWidth="480.0">
+            <HBox layoutX="30.0" layoutY="229.0" prefHeight="20.0" prefWidth="480.0" spacing="10.0">
                <children>
                   <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                      <children>
@@ -37,12 +57,17 @@
                   </VBox>
                   <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <TextField styleClass="input" text="0" />
+                        <TextField fx:id="essayLevel2" styleClass="input" text="0" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="250.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <TextField fx:id="choiceLevel2" styleClass="input" text="0" />
                      </children>
                   </VBox>
                </children>
             </HBox>
-            <HBox prefHeight="20.0" prefWidth="480.0">
+            <HBox layoutX="30.0" layoutY="266.0" prefHeight="20.0" prefWidth="480.0" spacing="10.0">
                <children>
                   <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                      <children>
@@ -51,12 +76,17 @@
                   </VBox>
                   <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <TextField styleClass="input" text="0" />
+                        <TextField fx:id="essayLevel3" styleClass="input" text="0" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="250.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <TextField fx:id="choiceLevel3" styleClass="input" text="0" />
                      </children>
                   </VBox>
                </children>
             </HBox>
-            <HBox prefHeight="20.0" prefWidth="480.0">
+            <HBox layoutX="30.0" layoutY="303.0" prefHeight="20.0" prefWidth="480.0" spacing="10.0">
                <children>
                   <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                      <children>
@@ -65,12 +95,17 @@
                   </VBox>
                   <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <TextField styleClass="input" text="0" />
+                        <TextField fx:id="essayLevel4" styleClass="input" text="0" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="250.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <TextField fx:id="choiceLevel4" styleClass="input" text="0" />
                      </children>
                   </VBox>
                </children>
             </HBox>
-            <HBox prefHeight="20.0" prefWidth="480.0">
+            <HBox layoutX="30.0" layoutY="89.0" prefHeight="20.0" prefWidth="480.0" spacing="10.0">
                <children>
                   <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                      <children>
@@ -79,23 +114,28 @@
                   </VBox>
                   <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <TextField styleClass="input" text="0" />
+                        <TextField fx:id="essayLevel5" styleClass="input" text="0" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="250.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <TextField fx:id="choiceLevel5" styleClass="input" text="0" />
                      </children>
                   </VBox>
                </children>
             </HBox>
-            <ButtonBar prefWidth="480.0">
-              <buttons>
-                <Button mnemonicParsing="false" text="Add">
-                     <styleClass>
-                        <String fx:value="materialButton" />
-                        <String fx:value="primary" />
-                     </styleClass>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#onCancelButtonClick" styleClass="materialButton" text="Cancel" />
-              </buttons>
-            </ButtonBar>
          </children>
       </VBox>
+      <ButtonBar prefWidth="480.0">
+        <buttons>
+          <Button mnemonicParsing="false" onAction="#onAddButtonClick" text="Add">
+               <styleClass>
+                  <String fx:value="materialButton" />
+                  <String fx:value="primary" />
+               </styleClass>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#onCancelButtonClick" styleClass="materialButton" text="Cancel" />
+        </buttons>
+      </ButtonBar>
    </children>
 </fx:root>

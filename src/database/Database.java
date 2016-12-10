@@ -33,13 +33,12 @@ public class Database {
             try {
                 conn = DriverManager.getConnection(
                         "jdbc:mysql://localhost:3306/oop?"
-                        + "user=root&password=1234&useSSL=false");
+                        + "user=root&password=Since 1996&useSSL=false");
             } catch (SQLException ex) {
                 System.out.println("SQLException: " + ex.getMessage());
                 System.out.println("SQLState: " + ex.getSQLState());
                 System.out.println("VendorError: " + ex.getErrorCode());
             }
-            //System.out.println("OK");
         }
     }
 

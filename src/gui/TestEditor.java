@@ -5,11 +5,12 @@
  */
 package gui;
 
-import java.awt.Desktop;
+import database.Database;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.property.ObjectProperty;
@@ -60,6 +61,8 @@ public class TestEditor extends HBox {
         
         this.questionForm.removeTopPart();
         this.questionForm.setManaged(false);
+        
+        Database.initialize();
     }
 
     @FXML
@@ -97,7 +100,7 @@ public class TestEditor extends HBox {
 
     @FXML
     private void onPrintButtonClick() {
-
+        
     }
 
     @FXML
@@ -122,6 +125,30 @@ public class TestEditor extends HBox {
         Stage stage = new Stage();
 
         testGeneratorDialog.setOnCancelButtonClick((ActionEvent subEvent) -> {
+            stage.close();
+        });
+        
+        testGeneratorDialog.setOnAddButtonClick((ActionEvent subEvent) -> {
+            ArrayList<Question> questions = new ArrayList<>();
+            String subject = testGeneratorDialog.getSubject();
+            
+            ArrayList<Integer> choiceNumberByLevel = testGeneratorDialog.getChoiceNumberList();
+            for (int i = 0; i < 5; ++i) {
+                System.out.println(Database.getRandomChoiceQuestion(subject, i, choiceNumberByLevel.get(i)));
+                questions.addAll(Database.getRandomChoiceQuestion(subject, i, choiceNumberByLevel.get(i)));
+            }
+            
+            ArrayList<Integer> essayNumberByLevel = testGeneratorDialog.getEssayNumberList();
+            for (int i = 0; i < 5; ++i) {
+                questions.addAll(Database.getRandomEssayQuestion(subject, i, essayNumberByLevel.get(i)));
+            }
+            
+            Collections.shuffle(questions);
+            
+            for (Question question: questions) {
+                this.addQuestion(question);
+            }
+            
             stage.close();
         });
 
