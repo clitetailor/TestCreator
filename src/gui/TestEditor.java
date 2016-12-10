@@ -140,6 +140,10 @@ public class TestEditor extends HBox {
         
         File file = fileChooser.showSaveDialog(this.getScene().getWindow());
         
+        if (file == null) {
+            return;
+        }
+        
         FileSaver fileSaver = new FileSaver();
         fileSaver.saveQuestion(file.toPath().toString(), this.getQuestions());
     }
@@ -162,6 +166,10 @@ public class TestEditor extends HBox {
         fileChooser.getExtensionFilters().add(extFilter);
         
         File file = fileChooser.showOpenDialog(this.getScene().getWindow());
+        
+        if (file == null) {
+            return;
+        }
         
         FileSaver fileSaver = new FileSaver();
         ArrayList<Question> questions = fileSaver.readFile(file.toPath().toString());
