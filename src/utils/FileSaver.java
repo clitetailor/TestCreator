@@ -4,7 +4,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.StringWriter;
 import java.util.ArrayList;
 import objs.ChoiceAnswer;
 import objs.ChoiceQuestion;
@@ -44,8 +43,6 @@ public class FileSaver {
 
         FileWriter file = new FileWriter(path);
         file.write(testObject.toJSONString());
-        System.out.println("Successfully Copied JSON Object to File...");
-        System.out.println("\nJSON Object: " + testObject);
         file.flush();
         file.close();
     }
@@ -107,22 +104,22 @@ public class FileSaver {
                 JSONObject questionObject = (JSONObject) jsonArray.get(i);
                 String type = (String) questionObject.get("type");
                 if (type.equals("EssayQuestion")) {
-                    EssayQuestion eq = new EssayQuestion();
+                    EssayQuestion essayQuestion = new EssayQuestion();
                     
                     // lay cac gia tri cua cau hoi de thiet lap cho doi tuong
-                    eq.setSubject((String) questionObject.get("subject"));
-                    eq.setId(Integer.parseInt((String) questionObject.get("id")));
-                    eq.setLevel(Integer.parseInt((String) questionObject.get("level")));
-                    eq.setContent((String) questionObject.get("content"));
-                    eq.setAnswer((String) questionObject.get("answer"));
-                    eq.setDescription((String) questionObject.get("description"));
-                    list.add(eq);
+                    essayQuestion.setSubject((String) questionObject.get("subject"));
+                    essayQuestion.setId(Integer.parseInt((String) questionObject.get("id")));
+                    essayQuestion.setLevel(Integer.parseInt((String) questionObject.get("level")));
+                    essayQuestion.setContent((String) questionObject.get("content"));
+                    essayQuestion.setAnswer((String) questionObject.get("answer"));
+                    essayQuestion.setDescription((String) questionObject.get("description"));
+                    list.add(essayQuestion);
                 } else if (type.equals("ChoiceQuestion")) {
-                    ChoiceQuestion cq = new ChoiceQuestion();
-                    cq.setSubject((String) questionObject.get("subject"));
-                    cq.setId(Integer.parseInt((String) questionObject.get("id")));
-                    cq.setLevel(Integer.parseInt((String) questionObject.get("level")));
-                    cq.setContent((String) questionObject.get("content"));
+                    ChoiceQuestion choiceQuestion = new ChoiceQuestion();
+                    choiceQuestion.setSubject((String) questionObject.get("subject"));
+                    choiceQuestion.setId(Integer.parseInt((String) questionObject.get("id")));
+                    choiceQuestion.setLevel(Integer.parseInt((String) questionObject.get("level")));
+                    choiceQuestion.setContent((String) questionObject.get("content"));
 
                     // tao mot mang JSONArray de chua cac cau tra loi
                     JSONArray answerArray = (JSONArray) questionObject.get("answers");
@@ -135,12 +132,12 @@ public class FileSaver {
                         ChoiceAnswer ca = new ChoiceAnswer();
                         ca.setId(Integer.parseInt((String) answerObject.get("id")));
                         ca.setContent((String) answerObject.get("content"));
-                        ca.setIsTrue(Boolean.parseBoolean((String) answerObject.get("isTrue")));
+                        ca.setIsTrue((Boolean) answerObject.get("isTrue"));
                         answerList.add(ca);
                     }
 
-                    cq.setAnswers(answerList);
-                    list.add(cq);
+                    choiceQuestion.setAnswers(answerList);
+                    list.add(choiceQuestion);
                 }
             }
         } catch (Exception e) {

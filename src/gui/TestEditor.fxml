@@ -34,14 +34,14 @@
             </ScrollPane>
             <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="60.0" styleClass="activityBar" StackPane.alignment="TOP_LEFT">
                <children>
-                  <Button mnemonicParsing="false" onAction="#onPrintButtonClick" prefHeight="40.0" prefWidth="40.0" styleClass="activityButton" textAlignment="CENTER" wrapText="true">
+                  <Button layoutX="20.0" layoutY="120.0" mnemonicParsing="false" onAction="#onImportButtonClick" prefHeight="40.0" prefWidth="40.0" styleClass="activityButton" textAlignment="CENTER" wrapText="true">
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <viewport>
                               <Rectangle2D height="24.0" width="24.0" />
                            </viewport>
                            <image>
-                              <Image url="@assets/print.png" />
+                              <Image url="@assets/open.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -54,6 +54,18 @@
                            </viewport>
                            <image>
                               <Image url="@assets/save.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#onPrintButtonClick" prefHeight="40.0" prefWidth="40.0" styleClass="activityButton" textAlignment="CENTER" wrapText="true">
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <viewport>
+                              <Rectangle2D height="24.0" width="24.0" />
+                           </viewport>
+                           <image>
+                              <Image url="@assets/print.png" />
                            </image>
                         </ImageView>
                      </graphic>

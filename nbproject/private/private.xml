@@ -1,23 +1,17 @@
-<<<<<<< HEAD
-<?xml version="1.0" encoding="UTF-8"?>
-<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
-    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
-    </open-files>
-</project-private>
-=======
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/_Project_Program/Netbean_Java/TestCreator/src/objs/EssayQuestion.java</file>
-            <file>file:/D:/_Project_Program/Netbean_Java/TestCreator/src/objs/ChoiceQuestion.java</file>
-            <file>file:/D:/_Project_Program/Netbean_Java/TestCreator/src/database/Database.java</file>
-            <file>file:/D:/_Project_Program/Netbean_Java/TestCreator/src/objs/ChoiceAnswer.java</file>
-            <file>file:/D:/_Project_Program/Netbean_Java/TestCreator/src/objs/Question.java</file>
+            <file>file:/D:/Clite%20Tailor/Code/Java/Projects/TestCreator/src/objs/ChoiceAnswer.java</file>
+            <file>file:/D:/Clite%20Tailor/Code/Java/Projects/TestCreator/src/objs/EssayQuestion.java</file>
+            <file>file:/D:/Clite%20Tailor/Code/Java/Projects/TestCreator/src/objs/Question.java</file>
+            <file>file:/D:/Clite%20Tailor/Code/Java/Projects/TestCreator/src/utils/FileSaver.java</file>
+            <file>file:/D:/Clite%20Tailor/Code/Java/Projects/TestCreator/src/objs/ChoiceQuestion.java</file>
+            <file>file:/D:/Clite%20Tailor/Code/Java/Projects/TestCreator/src/database/Database.java</file>
+            <file>file:/D:/Clite%20Tailor/Code/Java/Projects/TestCreator/src/gui/TestEditor.java</file>
+            <file>file:/D:/Clite%20Tailor/Code/Java/Projects/TestCreator/src/gui/QuestionForm.java</file>
+            <file>file:/D:/Clite%20Tailor/Code/Java/Projects/TestCreator/src/gui/QuestionBox.java</file>
         </group>
     </open-files>
 </project-private>
->>>>>>> database

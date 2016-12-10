@@ -109,6 +109,10 @@ public class QuestionBox extends VBox {
             }
         }
     }
+    
+    public Question getQuestion() {
+        return this.question;
+    }
 
     public void setOnDeleteButtonClick(EventHandler<ActionEvent> handler) {
         propertyOnDeleteButtonClick.set(handler);

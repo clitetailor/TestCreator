@@ -5,7 +5,11 @@
  */
 package gui;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.property.ObjectProperty;
@@ -14,15 +18,20 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import objs.Question;
+import org.json.simple.parser.ParseException;
+import utils.FileSaver;
 
 /**
  * FXML Controller class
@@ -43,43 +52,7 @@ public class TestEditor extends HBox {
 
         this.questionForm.setOnDoneButtonClick((event) -> {
             Question question = this.questionForm.getQuestion();
-            QuestionBox questionBox;
-
-            try {
-                questionBox = new QuestionBox(question);
-
-                questionBox.setOnDeleteButtonClick((subevent) -> {
-                    this.questionVBox.getChildren().remove(questionBox);
-                });
-
-                questionBox.setOnEditButtonClick((subevent) -> {
-                    try {
-                        this.questionEditForm.setVisible(true);
-                        this.questionEditForm.setManaged(true);
-
-                        this.scrollPane.setVvalue(0.0);
-
-                        this.questionEditForm.setQuestion(question);
-
-                        this.questionEditForm.setOnDoneButtonClick((subsubevent) -> {
-                            questionBox.setQuestion(this.questionEditForm.getQuestion());
-                        });
-
-                        this.questionEditForm.setOnCancelButtonClick((subsubevent) -> {
-                            this.questionEditForm.setVisible(false);
-                            this.questionEditForm.setManaged(false);
-                        });
-                    } catch (IOException ex) {
-                        Logger.getLogger(TestEditor.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                });
-
-                this.questionVBox.getChildren().add(questionBox);
-
-                this.questionForm.resetContent();
-            } catch (IOException ex) {
-                Logger.getLogger(TestEditor.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            this.addQuestion(question);
         });
         
         this.questionEditForm.removeTopPart();
@@ -160,7 +133,81 @@ public class TestEditor extends HBox {
     }
 
     @FXML
-    private void onSaveButtonClick() {
+    private void onSaveButtonClick() throws IOException {
+        FileChooser fileChooser = new FileChooser();
+        ExtensionFilter extFilter = new ExtensionFilter("JSON files", "*.json");
+        fileChooser.getExtensionFilters().add(extFilter);
+        
+        File file = fileChooser.showSaveDialog(this.getScene().getWindow());
+        
+        FileSaver fileSaver = new FileSaver();
+        fileSaver.saveQuestion(file.toPath().toString(), this.getQuestions());
+    }
+    
+    private ArrayList<Question> getQuestions() {
+        ArrayList<Question> questions = new ArrayList();
+        
+        for (Node node: this.questionVBox.getChildren()) {
+            QuestionBox questionBox = (QuestionBox) node;
+            questions.add(questionBox.getQuestion());
+        }
+        
+        return questions;
+    }
+    
+    @FXML
+    private void onImportButtonClick() throws IOException, FileNotFoundException, ParseException {
+        FileChooser fileChooser = new FileChooser();
+        ExtensionFilter extFilter = new ExtensionFilter("JSON files", "*.json");
+        fileChooser.getExtensionFilters().add(extFilter);
+        
+        File file = fileChooser.showOpenDialog(this.getScene().getWindow());
+        
+        FileSaver fileSaver = new FileSaver();
+        ArrayList<Question> questions = fileSaver.readFile(file.toPath().toString());
+        
+        for (Question question: questions) {
+            this.addQuestion(question);
+        }
+    }
+    
+    private void addQuestion(Question question) {
+        QuestionBox questionBox;
 
+        try {
+            questionBox = new QuestionBox(question);
+
+            questionBox.setOnDeleteButtonClick((subevent) -> {
+                this.questionVBox.getChildren().remove(questionBox);
+            });
+
+            questionBox.setOnEditButtonClick((subevent) -> {
+                try {
+                    this.questionEditForm.setVisible(true);
+                    this.questionEditForm.setManaged(true);
+
+                    this.scrollPane.setVvalue(0.0);
+
+                    this.questionEditForm.setQuestion(question);
+
+                    this.questionEditForm.setOnDoneButtonClick((subsubevent) -> {
+                        questionBox.setQuestion(this.questionEditForm.getQuestion());
+                    });
+
+                    this.questionEditForm.setOnCancelButtonClick((subsubevent) -> {
+                        this.questionEditForm.setVisible(false);
+                        this.questionEditForm.setManaged(false);
+                    });
+                } catch (IOException ex) {
+                    Logger.getLogger(TestEditor.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            });
+
+            this.questionVBox.getChildren().add(questionBox);
+
+            this.questionForm.resetContent();
+        } catch (IOException ex) {
+            Logger.getLogger(TestEditor.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
