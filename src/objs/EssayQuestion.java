@@ -9,20 +9,20 @@ package objs;
  *
  * @author ducnh
  */
-public class EssayQuestion extends Question
-{
-    private String description;
-    private String answer;
+public class EssayQuestion extends Question {
+
+    public EssayQuestion(String question, String answer, String description) {
+        this.content = new String(question);
+        this.description = new String(description);
+        this.answer = new String(answer);
+    }
 
     public EssayQuestion() {
-        this.description = "";
-        this.answer = "";
-    }
 
-    public EssayQuestion(String description, String answer) {
-        this.description = description;
-        this.answer = answer;
     }
+    
+    private String description;
+    private String answer;
 
     public String getDescription() {
         return description;
