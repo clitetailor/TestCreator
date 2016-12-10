@@ -1,0 +1,13 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+
+.menuBar {
+    -fx-background-color: white;
+}
+
+.layout {
+    -fx-background-color: #333;
+    -fx-padding: 0;
+}

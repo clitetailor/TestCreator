@@ -43,16 +43,11 @@ public class FileSaver {
         testObject.put("data", questionArray);
 
         FileWriter file = new FileWriter(path);
-        try {
-            file.write(testObject.toJSONString());
-            System.out.println("Successfully Copied JSON Object to File...");
-            System.out.println("\nJSON Object: " + testObject);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            file.flush();
-            file.close();
-        }
+        file.write(testObject.toJSONString());
+        System.out.println("Successfully Copied JSON Object to File...");
+        System.out.println("\nJSON Object: " + testObject);
+        file.flush();
+        file.close();
     }
 
     private JSONObject encodeEssayQuestion(EssayQuestion question) {
@@ -86,7 +81,7 @@ public class FileSaver {
             // put dap an vao
             answerObject.put("id", "" + answer.getId() + "");
             answerObject.put("content", answer.getContent());
-            answerObject.put("isTrue", "" + answer.isIsTrue() + "");
+            answerObject.put("isTrue", answer.isTrue());
             answerArray.add(answerObject); // them vao JSONArray
         }
 
