@@ -109,6 +109,27 @@ public class TestEditor extends HBox {
         Stage stage = new Stage();
 
         QuestionPickerDialog questionPickerDialog = new QuestionPickerDialog();
+        questionPickerDialog.setSubjects(Database.getAllSubjects());
+        questionPickerDialog.setOnSearchButtonClick((event) -> {
+            ArrayList<Question> questions = new ArrayList<>();
+            
+            if ("EssayQuestion".equals(questionPickerDialog.getQuestionType())) {
+                questions.addAll(Database.getEssayQuestionsBySubject(questionPickerDialog.getSubject(), questionPickerDialog.getLevel()));
+            } else if ("ChoiceQuestion".equals(questionPickerDialog.getQuestionType())) {
+                questions.addAll(Database.getChoiceQuestionsBySubject(questionPickerDialog.getSubject(), questionPickerDialog.getLevel()));
+            } else {
+                return;
+            }
+            
+            try {
+                questionPickerDialog.setQuestions(questions);
+            } catch (IOException ex) {
+                Logger.getLogger(TestEditor.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        questionPickerDialog.setAddQuestionFunc((question) -> {
+            this.addQuestion(question);
+        });
 
         stage.setTitle("Search Question");
         stage.setScene(new Scene(questionPickerDialog));
@@ -124,6 +145,8 @@ public class TestEditor extends HBox {
         TestGeneratorDialog testGeneratorDialog = new TestGeneratorDialog();
         Stage stage = new Stage();
 
+        testGeneratorDialog.setSubjects(Database.getAllSubjects());
+        
         testGeneratorDialog.setOnCancelButtonClick((ActionEvent subEvent) -> {
             stage.close();
         });
@@ -132,9 +155,12 @@ public class TestEditor extends HBox {
             ArrayList<Question> questions = new ArrayList<>();
             String subject = testGeneratorDialog.getSubject();
             
+            if (subject == null) {
+                return;
+            }
+            
             ArrayList<Integer> choiceNumberByLevel = testGeneratorDialog.getChoiceNumberList();
             for (int i = 0; i < 5; ++i) {
-                System.out.println(Database.getRandomChoiceQuestion(subject, i, choiceNumberByLevel.get(i)));
                 questions.addAll(Database.getRandomChoiceQuestion(subject, i, choiceNumberByLevel.get(i)));
             }
             
@@ -148,8 +174,6 @@ public class TestEditor extends HBox {
             for (Question question: questions) {
                 this.addQuestion(question);
             }
-            
-            stage.close();
         });
 
         stage.setTitle("Generate Test");

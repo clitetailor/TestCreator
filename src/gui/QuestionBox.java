@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -40,6 +41,8 @@ public class QuestionBox extends VBox {
         loader.load();
 
         this.setQuestion(question);
+        this.addButtonBar.setVisible(false);
+        this.addButtonBar.setManaged(false);
     }
 
     private Question question;
@@ -130,5 +133,29 @@ public class QuestionBox extends VBox {
     @FXML
     private void onEditButtonClick(ActionEvent event) {
         propertyOnEditButtonClick.get().handle(event);
+    }
+    
+    @FXML
+    private ButtonBar editButtonBar;
+    @FXML
+    private ButtonBar addButtonBar;
+    
+    @FXML
+    public void toggleAddButtonBar() {
+        this.editButtonBar.setVisible(false);
+        this.editButtonBar.setManaged(false);
+        this.addButtonBar.setVisible(true);
+        this.addButtonBar.setManaged(true);
+    }
+    
+    EventHandler<ActionEvent> addEventHandler = (ActionEvent) -> {};
+    
+    public void setOnAddButtonClick(EventHandler<ActionEvent> handler) {
+        this.addEventHandler = handler;
+    }
+    
+    @FXML
+    private void onAddButtonClick(ActionEvent event) {
+        this.addEventHandler.handle(event);
     }
 }

@@ -37,7 +37,7 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <ButtonBar prefHeight="40.0" prefWidth="200.0">
+      <ButtonBar fx:id="editButtonBar" prefHeight="40.0" prefWidth="200.0">
         <buttons>
           <Button mnemonicParsing="false" onAction="#onEditButtonClick" text="Edit">
                <styleClass>
@@ -52,6 +52,16 @@
                </styleClass>
             </Button>
         </buttons>
+      </ButtonBar>
+      <ButtonBar fx:id="addButtonBar" layoutX="30.0" layoutY="290.0" prefHeight="40.0" prefWidth="200.0">
+         <buttons>
+            <Button mnemonicParsing="false" onAction="#onAddButtonClick" text="Add">
+               <styleClass>
+                  <String fx:value="materialButton" />
+                  <String fx:value="primary" />
+               </styleClass>
+            </Button>
+         </buttons>
       </ButtonBar>
    </children>
 </fx:root>

@@ -212,7 +212,7 @@ public class Database {
      * 
      * @return ArrayList của String chưa các môn học
      */
-    public static ArrayList<String> getAllSubject() {
+    public static ArrayList<String> getAllSubjects() {
         ArrayList<String> list = new ArrayList<>();
         try {
             String query = "SELECT subject FROM essayquestion union select subject from choicequestion;";

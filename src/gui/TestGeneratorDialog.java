@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
@@ -52,7 +53,11 @@ public class TestGeneratorDialog extends VBox {
     }
     
     @FXML
-    private TextField subjectTextField;
+    private ComboBox subjectComboBox;
+    
+    public void setSubjects(ArrayList<String> subjects) {
+        this.subjectComboBox.getItems().setAll(subjects);
+    }
     
     @FXML
     private TextField essayLevel1;
@@ -97,6 +102,9 @@ public class TestGeneratorDialog extends VBox {
     }
     
     public String getSubject() {
-        return this.subjectTextField.getText();
+        if (subjectComboBox.getValue() == null) {
+            return null;
+        }
+        return this.subjectComboBox.getValue().toString();
     }
 }

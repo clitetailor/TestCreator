@@ -6,11 +6,16 @@
 package gui;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.function.Consumer;
+import java.util.function.Function;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.ComboBox;
 import javafx.scene.layout.VBox;
+import objs.Question;
 
 /**
  * FXML Controller class
@@ -23,7 +28,13 @@ public class QuestionSearchBox extends VBox {
 	loader.setRoot(this);
 	loader.setController(this);
         loader.load();
+        
+        this.levelComboBox.getItems().addAll(1, 2, 3, 4, 5);
+        this.typeComboBox.getItems().addAll("EssayQuestion", "ChoiceQuestion");
     }
+    
+    @FXML
+    ComboBox typeComboBox;
     
     private EventHandler<ActionEvent> searchEventHandler = (ActionEvent event) -> { };
     
@@ -45,5 +56,29 @@ public class QuestionSearchBox extends VBox {
     @FXML
     private void onClearButtonClick(ActionEvent event) {
         this.clearEventHandler.handle(event);
+    }
+    
+    @FXML
+    private ComboBox subjectComboBox;
+    @FXML
+    private ComboBox levelComboBox;
+    
+    public void setSubjects(ArrayList<String> subjects) {
+        this.subjectComboBox.getItems().addAll(subjects);
+    }
+    
+    public String getSubject() {
+        return this.subjectComboBox.getValue().toString();
+    }
+    
+    public int getLevel() {
+        return Integer.parseInt(this.levelComboBox.getValue().toString());
+    }
+    
+    public String getQuestionType() {
+        if (this.typeComboBox.getValue() == null) {
+            return null;
+        }
+        return this.typeComboBox.getValue().toString();
     }
 }
