@@ -5,8 +5,11 @@
  */
 package gui;
 
+import database.Database;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -30,8 +33,83 @@ public class RepositoryEditor extends HBox {
         loader.load();
 
         this.questionForm.setManaged(false);
+        
+        this.questionForm.setOnDoneButtonClick((event) -> {
+            Database.saveQuestion(this.questionForm.getQuestion());
+            
+            this.questionForm.resetContent();
+            this.updateContent();
+        });
+        
+        Database.initialize();
+        this.questionSearchBox.setSubjects(Database.getAllSubjects());
+        
+        this.questionSearchBox.setOnSearchButtonClick((event) -> {
+            this.updateContent();
+        });
+    }
+    
+    private void updateContent() {
+        String subject = this.questionSearchBox.getSubject();
+        Integer level = this.questionSearchBox.getLevel();
+        String type = this.questionSearchBox.getQuestionType();
+
+        if (subject == null || type == null || subject.equals("")) {
+            return;
+        }
+
+        ArrayList<Question> questions = new ArrayList<>();
+
+        if ("EssayQuestion".equals(type)) {
+            if (level == null) {
+                questions.addAll(Database.getEssayQuestionsBySubject(subject));
+            } else {
+                questions.addAll(Database.getEssayQuestionsBySubject(subject, level));
+            }
+        } else if ("ChoiceQuestion".equals(type)) {
+            if (level == null) {
+                questions.addAll(Database.getChoiceQuestionsBySubject(subject));
+            } else {
+                questions.addAll(Database.getChoiceQuestionsBySubject(subject, level));
+            }
+        } else {
+            return;
+        }
+        
+        this.questionSearchBox.setSubjects(Database.getAllSubjects());
+        this.questionSearchBox.setSubject(subject);
+        
+        try {
+            this.setQuestions(questions);
+        } catch (IOException ex) {
+            Logger.getLogger(RepositoryEditor.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
+
+    private void setQuestions(ArrayList<Question> questions) throws IOException {
+        this.questionVBox.getChildren().clear();
+        
+        for (Question question: questions) {
+            QuestionBox questionBox = new QuestionBox(question);
+            questionBox.setOnEditButtonClick((event) -> {
+                
+            });
+            
+            questionBox.setOnDeleteButtonClick((event) -> {
+                Database.deleteQuestion(question);
+            });
+            
+            this.questionVBox.getChildren().add(questionBox);
+        }
+    }
+
+    private void addQuestion(Question question) throws IOException {
+        this.questionVBox.getChildren().add(new QuestionBox(question));
+    }
+    
+    @FXML
+    private QuestionSearchBox questionSearchBox;
     @FXML
     private QuestionForm questionForm;
     @FXML

@@ -122,6 +122,18 @@ public class QuestionForm extends VBox {
     public Question getQuestion() {
         if (tabPane.getSelectionModel().getSelectedIndex() == 0) {
             EssayQuestion essayQuestion = new EssayQuestion(questionTextArea.getText(), answerTextArea.getText(), descriptionTextArea.getText());
+            String subject = this.subjectTextField.getText();
+            Integer level = Integer.parseInt(this.levelChoiceBox.getValue().toString());
+            if (subject == null) {
+                essayQuestion.setSubject(null);
+            } else {
+                essayQuestion.setSubject(subject);
+            }
+            if (level == null) {
+                essayQuestion.setSubject(null);
+            } else {
+                essayQuestion.setLevel(level);
+            }
             return essayQuestion;
         } else if (tabPane.getSelectionModel().getSelectedIndex() == 1) {
             ArrayList choiceAnswerArrayList = new ArrayList();
@@ -132,6 +144,18 @@ public class QuestionForm extends VBox {
             }
 
             ChoiceQuestion choiceQuestion = new ChoiceQuestion(questionTextArea.getText(), choiceAnswerArrayList);
+            String subject = this.subjectTextField.getText();
+            Integer level = Integer.parseInt(this.levelChoiceBox.getValue().toString());
+            if (subject == null) {
+                choiceQuestion.setSubject(null);
+            } else {
+                choiceQuestion.setSubject(subject);
+            }
+            if (level == null) {
+                choiceQuestion.setSubject(null);
+            } else {
+                choiceQuestion.setLevel(level);
+            }
 
             return choiceQuestion;
         } else {

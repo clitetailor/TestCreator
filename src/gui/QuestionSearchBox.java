@@ -7,15 +7,12 @@ package gui;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.function.Consumer;
-import java.util.function.Function;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.VBox;
-import objs.Question;
 
 /**
  * FXML Controller class
@@ -64,14 +61,21 @@ public class QuestionSearchBox extends VBox {
     private ComboBox levelComboBox;
     
     public void setSubjects(ArrayList<String> subjects) {
+        this.subjectComboBox.getItems().clear();
         this.subjectComboBox.getItems().addAll(subjects);
     }
     
     public String getSubject() {
+        if (this.subjectComboBox.getValue() == null) {
+            return null;
+        }
         return this.subjectComboBox.getValue().toString();
     }
     
-    public int getLevel() {
+    public Integer getLevel() {
+        if (this.levelComboBox.getValue() == null) {
+            return null;
+        }
         return Integer.parseInt(this.levelComboBox.getValue().toString());
     }
     
@@ -80,5 +84,9 @@ public class QuestionSearchBox extends VBox {
             return null;
         }
         return this.typeComboBox.getValue().toString();
+    }
+    
+    public void setSubject(String subject) {
+        this.subjectComboBox.setValue(subject);
     }
 }

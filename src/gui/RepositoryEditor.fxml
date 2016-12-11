@@ -25,9 +25,9 @@
                         <Insets bottom="30.0" left="40.0" right="40.0" top="30.0" />
                      </padding>
                      <children>
-                        <QuestionSearchBox />
+                        <QuestionSearchBox fx:id="questionSearchBox" />
                         <QuestionForm fx:id="questionForm" visible="false" />
-                        <VBox fx:id="questionVBox" />
+                        <VBox fx:id="questionVBox" alignment="TOP_CENTER" spacing="20.0" />
                      </children>
                   </VBox>
                </content>
