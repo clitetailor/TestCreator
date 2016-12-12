@@ -33,6 +33,7 @@ import javafx.stage.Window;
 import objs.Question;
 import org.json.simple.parser.ParseException;
 import utils.FileSaver;
+import utils.WritePdf;
 
 /**
  * FXML Controller class
@@ -100,7 +101,16 @@ public class TestEditor extends HBox {
 
     @FXML
     private void onPrintButtonClick() {
+        FileChooser fileChooser = new FileChooser();
+        ExtensionFilter extFilter = new ExtensionFilter("PDF file", "*.pdf");
+        fileChooser.getExtensionFilters().add(extFilter);
         
+        File file = fileChooser.showSaveDialog(this.getScene().getWindow());
+        if (file == null) {
+            return;
+        }
+        
+        WritePdf.printPdf(file.getAbsolutePath(), this.getQuestions());
     }
 
     @FXML

@@ -8,6 +8,9 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.*;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import objs.ChoiceAnswer;
@@ -15,17 +18,19 @@ import objs.ChoiceQuestion;
 import objs.EssayQuestion;
 import objs.Question;
 
-class WritePdf {
+public class WritePdf {
 
-    public static void printPdf(ArrayList<Question> questions) {
+    public static void printPdf(String path, ArrayList<Question> questions) {
         try {
             Document test = new Document();
             Document solution = new Document();
 
-            Font font = FontFactory.getFont("Times New Roman.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-
-            PdfWriter.getInstance(test, new FileOutputStream("DeThi.pdf"));
-            PdfWriter.getInstance(solution, new FileOutputStream("DapAn.pdf"));
+            Font font = FontFactory.getFont("./lib/fonts/arial.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            
+            String dir = Paths.get(path.substring(0, path.lastIndexOf('.'))).normalize().toString();
+            
+            PdfWriter.getInstance(test, new FileOutputStream(dir + ".pdf"));
+            PdfWriter.getInstance(solution, new FileOutputStream(dir + ".solution.pdf"));
 
             test.open();
             solution.open();
@@ -79,7 +84,7 @@ class WritePdf {
 
                     EssayQuestion essayQuestion = (EssayQuestion) questions.get(i);
                     
-                    if (essayQuestion.getDescription() != null) {
+                    if (essayQuestion.getDescription() != null && essayQuestion.getDescription() != "") {
                         str = "Gợi ý: " + essayQuestion.getDescription() + "\n";
                         testParagraph.add(str);
                     }
@@ -119,7 +124,7 @@ class WritePdf {
         ArrayList<Question> question = new ArrayList<>();
         question.add(cauhoi2);
         question.add(cauhoi);
-        printPdf(question);
+        printPdf("./Dethi", question);
 
     }
 
