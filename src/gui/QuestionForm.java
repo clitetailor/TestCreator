@@ -100,6 +100,9 @@ public class QuestionForm extends VBox {
     @FXML
     private void onAddButtonClick(ActionEvent event) throws IOException {
         ChoiceAnswerBox choiceAnswerBox = new ChoiceAnswerBox();
+        choiceAnswerBox.setOnDeleteButtonClick((subEvent) -> {
+            this.choiceAnswerVBox.getChildren().remove(choiceAnswerBox);
+        });
 
         VBox.setVgrow(choiceAnswerBox, Priority.ALWAYS);
 

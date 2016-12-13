@@ -47,6 +47,14 @@ public class RepositoryEditor extends HBox {
         this.questionSearchBox.setOnSearchButtonClick((event) -> {
             this.updateContent();
         });
+        
+        this.questionSearchBox.setOnClearButtonClick((event) -> {
+            this.questionVBox.getChildren().clear();
+        });
+        
+        
+        this.questionEditForm.removeTopPart();
+        this.questionEditForm.setManaged(false);
     }
     
     private void updateContent() {
@@ -93,7 +101,25 @@ public class RepositoryEditor extends HBox {
         for (Question question: questions) {
             QuestionBox questionBox = new QuestionBox(question);
             questionBox.setOnEditButtonClick((event) -> {
+                try {
+                    this.questionEditForm.setQuestion(question);
+                } catch (IOException ex) {
+                    Logger.getLogger(RepositoryEditor.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                this.questionEditForm.setVisible(true);
+                this.questionEditForm.setManaged(true);
+                this.scrollPane.setVvalue(0.0);
                 
+                
+                this.questionEditForm.setOnDoneButtonClick((subsubevent) -> {
+                    Database.deleteQuestion(question);
+                    Database.saveQuestion(question);
+                });
+
+                this.questionEditForm.setOnCancelButtonClick((subsubevent) -> {
+                    this.questionEditForm.setVisible(false);
+                    this.questionEditForm.setManaged(false);
+                });
             });
             
             questionBox.setOnDeleteButtonClick((event) -> {
@@ -103,15 +129,13 @@ public class RepositoryEditor extends HBox {
             this.questionVBox.getChildren().add(questionBox);
         }
     }
-
-    private void addQuestion(Question question) throws IOException {
-        this.questionVBox.getChildren().add(new QuestionBox(question));
-    }
     
     @FXML
     private QuestionSearchBox questionSearchBox;
     @FXML
     private QuestionForm questionForm;
+    @FXML
+    private QuestionForm questionEditForm;
     @FXML
     private ScrollPane scrollPane;
     @FXML

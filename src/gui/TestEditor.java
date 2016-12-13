@@ -124,9 +124,27 @@ public class TestEditor extends HBox {
             ArrayList<Question> questions = new ArrayList<>();
             
             if ("EssayQuestion".equals(questionPickerDialog.getQuestionType())) {
-                questions.addAll(Database.getEssayQuestionsBySubject(questionPickerDialog.getSubject(), questionPickerDialog.getLevel()));
+                String subject = questionPickerDialog.getSubject();
+                Integer level = questionPickerDialog.getLevel();
+                
+                if (subject != null && level != null) {
+                    questions.addAll(Database.getEssayQuestionsBySubject(questionPickerDialog.getSubject(), questionPickerDialog.getLevel()));
+                } else if (subject != null && level == null) {
+                    questions.addAll(Database.getEssayQuestionsBySubject(questionPickerDialog.getSubject()));
+                } else {
+                    
+                }
             } else if ("ChoiceQuestion".equals(questionPickerDialog.getQuestionType())) {
-                questions.addAll(Database.getChoiceQuestionsBySubject(questionPickerDialog.getSubject(), questionPickerDialog.getLevel()));
+                String subject = questionPickerDialog.getSubject();
+                Integer level = questionPickerDialog.getLevel();
+                
+                if (subject != null && level != null) {
+                    questions.addAll(Database.getChoiceQuestionsBySubject(questionPickerDialog.getSubject(), questionPickerDialog.getLevel()));
+                } else if (subject != null && level == null) {
+                    questions.addAll(Database.getChoiceQuestionsBySubject(questionPickerDialog.getSubject()));
+                } else {
+                    
+                }
             } else {
                 return;
             }

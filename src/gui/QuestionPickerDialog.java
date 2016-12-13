@@ -55,6 +55,8 @@ public class QuestionPickerDialog extends VBox {
     }
     
     public void setQuestions(ArrayList<Question> questions) throws IOException {
+        this.questionFormVBox.getChildren().clear();
+        
         for (Question question: questions) {
             QuestionBox questionBox = new QuestionBox(question);
             questionBox.toggleAddButtonBar();
