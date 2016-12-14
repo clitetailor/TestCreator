@@ -41,7 +41,7 @@ public class WritePdf {
             int essayCount = 1;
             int choiceCount = 1;
 
-            str = "\nI. PHẦN TỰ LUẬN:\n";
+            str = "\nI. PHẦN TRẮC NGHIỆM:\n";
             testParagraph.add(str);
             solutionParagraph.add(str);
 
@@ -67,9 +67,12 @@ public class WritePdf {
 
                     ++choiceCount;
                 }
+                
+                testParagraph.add("\n");
+                solutionParagraph.add("\n");
             }
 
-            str = "\nII. PHẦN TRẮC NGHIỆM:\n";
+            str = "\nII. PHẦN TỰ LUẬN:\n";
             testParagraph.add(str);
             solutionParagraph.add(str);
 
@@ -91,6 +94,9 @@ public class WritePdf {
 
                     ++essayCount;
                 }
+                
+                testParagraph.add("\n");
+                solutionParagraph.add("\n");
             }
 
             test.add(testParagraph);

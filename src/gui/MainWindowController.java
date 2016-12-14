@@ -112,6 +112,9 @@ public class MainWindowController implements Initializable {
                 }
             });
 
+            
+            HBox.setHgrow(welcomePage, Priority.ALWAYS);
+            
             mainPane.getChildren().add(welcomePage);
         } catch (IOException ex) {
             Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);

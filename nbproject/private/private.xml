@@ -3,20 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Clite%20Tailor/Code/Java/Projects/TestCreator/src/utils/WritePdf.java</file>
-            <file>file:/D:/Clite%20Tailor/Code/Java/Projects/TestCreator/src/objs/EssayQuestion.java</file>
-            <file>file:/D:/Clite%20Tailor/Code/Java/Projects/TestCreator/src/objs/Question.java</file>
-            <file>file:/D:/Clite%20Tailor/Code/Java/Projects/TestCreator/src/gui/QuestionSearchBox.java</file>
-            <file>file:/D:/Clite%20Tailor/Code/Java/Projects/TestCreator/src/objs/ChoiceQuestion.java</file>
-            <file>file:/D:/Clite%20Tailor/Code/Java/Projects/TestCreator/src/gui/TestGeneratorDialog.java</file>
-            <file>file:/D:/Clite%20Tailor/Code/Java/Projects/TestCreator/src/gui/TestEditor.java</file>
-            <file>file:/D:/Clite%20Tailor/Code/Java/Projects/TestCreator/src/gui/QuestionBox.java</file>
-            <file>file:/D:/Clite%20Tailor/Code/Java/Projects/TestCreator/src/gui/QuestionPickerDialog.java</file>
             <file>file:/D:/Clite%20Tailor/Code/Java/Projects/TestCreator/src/objs/ChoiceAnswer.java</file>
-            <file>file:/D:/Clite%20Tailor/Code/Java/Projects/TestCreator/src/gui/ChoiceAnswerBox.java</file>
-            <file>file:/D:/Clite%20Tailor/Code/Java/Projects/TestCreator/src/database/Database.java</file>
-            <file>file:/D:/Clite%20Tailor/Code/Java/Projects/TestCreator/src/gui/QuestionForm.java</file>
-            <file>file:/D:/Clite%20Tailor/Code/Java/Projects/TestCreator/src/gui/RepositoryEditor.java</file>
+            <file>file:/D:/Clite%20Tailor/Code/Java/Projects/TestCreator/src/objs/EssayQuestion.java</file>
+            <file>file:/D:/Clite%20Tailor/Code/Java/Projects/TestCreator/src/gui/MaterialDesign.css</file>
+            <file>file:/D:/Clite%20Tailor/Code/Java/Projects/TestCreator/src/objs/Question.java</file>
+            <file>file:/D:/Clite%20Tailor/Code/Java/Projects/TestCreator/src/objs/ChoiceQuestion.java</file>
             <file>file:/D:/Clite%20Tailor/Code/Java/Projects/TestCreator/nbproject/jfx-impl.xml</file>
         </group>
     </open-files>

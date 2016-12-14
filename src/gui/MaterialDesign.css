@@ -45,7 +45,6 @@ and open the template in the editor.
     -fx-background-color: dodgerblue;
     -fx-text-fill: white;
 }
-
 /*Activity Bar*/
 
 .activityBar {
@@ -127,12 +126,15 @@ and open the template in the editor.
 .scrollPane > .scroll-bar:horizontal > .decrement-button {
     -fx-background-color: transparent;
     -fx-background-radius: 0;
+    -fx-unit-increment: 80;
+    
 }
 
 .scrollPane > .scroll-bar:vertical > .increment-button,
 .scrollPane > .scroll-bar:vertical > .decrement-button {
     -fx-background-color: transparent;
     -fx-background-radius: 0;
+    -fx-unit-increment: 80;
 }
 
 .scrollPane > .scroll-bar > .thumb {
@@ -176,12 +178,14 @@ and open the template in the editor.
 .scroll-pane > .scroll-bar:horizontal > .decrement-button {
     -fx-background-color: transparent;
     -fx-background-radius: 0;
+    -fx-unit-increment: 80;
 }
 
 .scroll-pane > .scroll-bar:vertical > .increment-button,
 .scroll-pane > .scroll-bar:vertical > .decrement-button {
     -fx-background-color: transparent;
     -fx-background-radius: 0;
+    -fx-unit-increment: 80;
 }
 
 .scroll-pane > .scroll-bar > .thumb {
@@ -265,4 +269,39 @@ and open the template in the editor.
 
 .contextButton {
     -fx-background-color: transparent;
+}
+
+
+.materialButton:active {
+    -fx-background-color: black;
+}
+
+.materialButton:hover {
+    -fx-background-color: white;
+    -fx-text-fill: gray;
+}
+
+.materialButton.primary:selected {
+    -fx-background-color: black;
+    -fx-text-fill: white;
+}
+
+.materialButton.primary:hover {
+    -fx-background-color: white;
+    -fx-text-fill: gray;
+}
+
+.materialButton.intense:selected {
+    -fx-background-color: black;
+    -fx-text-fill: white;
+}
+
+.materialButton.intense:hover {
+    -fx-background-color: white;
+    -fx-text-fill: gray;
+}
+
+
+.background {
+    -fx-background-color: white;
 }

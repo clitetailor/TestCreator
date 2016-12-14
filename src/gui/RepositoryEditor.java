@@ -112,7 +112,6 @@ public class RepositoryEditor extends HBox {
                 
                 
                 this.questionEditForm.setOnDoneButtonClick((subsubevent) -> {
-                    Database.deleteQuestion(question);
                     Database.saveQuestion(question);
                 });
 

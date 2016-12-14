@@ -125,7 +125,13 @@ public class TestEditor extends HBox {
             
             if ("EssayQuestion".equals(questionPickerDialog.getQuestionType())) {
                 String subject = questionPickerDialog.getSubject();
-                Integer level = questionPickerDialog.getLevel();
+                Integer level = null;
+                
+                try {
+                    level = questionPickerDialog.getLevel();
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
                 
                 if (subject != null && level != null) {
                     questions.addAll(Database.getEssayQuestionsBySubject(questionPickerDialog.getSubject(), questionPickerDialog.getLevel()));
@@ -188,13 +194,19 @@ public class TestEditor extends HBox {
             }
             
             ArrayList<Integer> choiceNumberByLevel = testGeneratorDialog.getChoiceNumberList();
+            
+            System.out.println(choiceNumberByLevel);
             for (int i = 0; i < 5; ++i) {
-                questions.addAll(Database.getRandomChoiceQuestion(subject, i, choiceNumberByLevel.get(i)));
+                System.out.println(Database.getRandomChoiceQuestion(subject, i + 1, choiceNumberByLevel.get(i)));
+                questions.addAll(Database.getRandomChoiceQuestion(subject, i + 1, choiceNumberByLevel.get(i)));
             }
             
             ArrayList<Integer> essayNumberByLevel = testGeneratorDialog.getEssayNumberList();
+            
+            System.out.println(essayNumberByLevel);
             for (int i = 0; i < 5; ++i) {
-                questions.addAll(Database.getRandomEssayQuestion(subject, i, essayNumberByLevel.get(i)));
+                System.out.println(Database.getRandomEssayQuestion(subject, i + 1, essayNumberByLevel.get(i)));
+                questions.addAll(Database.getRandomEssayQuestion(subject, i + 1, essayNumberByLevel.get(i)));
             }
             
             Collections.shuffle(questions);

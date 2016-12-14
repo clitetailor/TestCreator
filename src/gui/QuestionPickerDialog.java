@@ -50,7 +50,7 @@ public class QuestionPickerDialog extends VBox {
         return this.questionSearchBox.getSubject();
     }
     
-    public int getLevel() {
+    public Integer getLevel() {
         return this.questionSearchBox.getLevel();
     }
     
