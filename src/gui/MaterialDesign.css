@@ -272,36 +272,16 @@ and open the template in the editor.
 }
 
 
-.materialButton:active {
-    -fx-background-color: black;
-}
-
-.materialButton:hover {
-    -fx-background-color: white;
-    -fx-text-fill: gray;
-}
-
-.materialButton.primary:selected {
+.materialButton:selected {
     -fx-background-color: black;
     -fx-text-fill: white;
-}
-
-.materialButton.primary:hover {
-    -fx-background-color: white;
-    -fx-text-fill: gray;
-}
-
-.materialButton.intense:selected {
-    -fx-background-color: black;
-    -fx-text-fill: white;
-}
-
-.materialButton.intense:hover {
-    -fx-background-color: white;
-    -fx-text-fill: gray;
 }
 
 
 .background {
     -fx-background-color: white;
+}
+
+.warningLabel {
+    -fx-text-fill: red;
 }

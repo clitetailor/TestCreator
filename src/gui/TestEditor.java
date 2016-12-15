@@ -62,8 +62,6 @@ public class TestEditor extends HBox {
         
         this.questionForm.removeTopPart();
         this.questionForm.setManaged(false);
-        
-        Database.initialize();
     }
 
     @FXML
@@ -290,7 +288,11 @@ public class TestEditor extends HBox {
                     this.questionEditForm.setQuestion(question);
 
                     this.questionEditForm.setOnDoneButtonClick((subsubevent) -> {
-                        questionBox.setQuestion(this.questionEditForm.getQuestion());
+                        try {
+                            questionBox.setQuestion(this.questionEditForm.getQuestion());
+                        } catch (IOException ex) {
+                            Logger.getLogger(TestEditor.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     });
 
                     this.questionEditForm.setOnCancelButtonClick((subsubevent) -> {

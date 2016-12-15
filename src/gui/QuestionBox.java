@@ -70,7 +70,7 @@ public class QuestionBox extends VBox {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void setQuestion(Question question) {
+    public void setQuestion(Question question) throws IOException {
         this.question = question;
 
         questionContentLabel.setText(question.getContent());
@@ -99,14 +99,22 @@ public class QuestionBox extends VBox {
 
             for (ChoiceAnswer answer : choiceQuestion.getAnswers()) {
                 AnchorPane anchorPane = new AnchorPane();
-                Label answerLabel = new Label(answer.getContent());
-                answerLabel.getStyleClass().add("content");
+                ChoiceAnswerBox choiceAnswerBox = new ChoiceAnswerBox(answer);
+                
+                choiceAnswerBox.setOnDeleteButtonClick((subEvent) -> {
+                    anchorPane.getChildren().remove(choiceAnswerBox);
+                    choiceQuestion.getAnswers().remove(answer);
+                });
+                
+                choiceAnswerBox.setOnTagButtonClick((subEvent) -> {
+                    answer.setIsTrue(!answer.isTrue());
+                });
 
-                AnchorPane.setLeftAnchor(answerLabel, 0.0);
-                AnchorPane.setRightAnchor(answerLabel, 0.0);
-                AnchorPane.setTopAnchor(answerLabel, 0.0);
+                AnchorPane.setLeftAnchor(choiceAnswerBox, 0.0);
+                AnchorPane.setRightAnchor(choiceAnswerBox, 0.0);
+                AnchorPane.setTopAnchor(choiceAnswerBox, 0.0);
 
-                anchorPane.getChildren().add(answerLabel);
+                anchorPane.getChildren().add(choiceAnswerBox);
 
                 this.answerVBox.getChildren().add(anchorPane);
             }

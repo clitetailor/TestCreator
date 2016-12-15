@@ -23,24 +23,41 @@ import objs.Question;
  * @author hoangkien
  */
 public class Database {
+    
+    public static boolean initialize(String username, String password) {
+        if (conn == null) {
+            try {
+                conn = DriverManager.getConnection(
+                        "jdbc:mysql://localhost:3306/oop?"
+                        + "user=" + username +"&password=" + password + "&useSSL=false");
+            } catch (SQLException ex) {
+                System.out.println("SQLException: " + ex.getMessage());
+                System.out.println("SQLState: " + ex.getSQLState());
+                System.out.println("VendorError: " + ex.getErrorCode());
+                return false;
+            }
+            //System.out.println("OK");
+        }
+        return true;
+    }
 
     private static Connection conn = null;
     /**
      * Khởi tạo kết nối database
      */
-    public static void initialize() {
-        if (conn == null) {
-            try {
-                conn = DriverManager.getConnection(
-                        "jdbc:mysql://localhost:3306/oop?"
-                        + "user=root&password=Since 1996&useSSL=false");
-            } catch (SQLException ex) {
-                System.out.println("SQLException: " + ex.getMessage());
-                System.out.println("SQLState: " + ex.getSQLState());
-                System.out.println("VendorError: " + ex.getErrorCode());
-            }
-        }
-    }
+//    public static void initialize() {
+//        if (conn == null) {
+//            try {
+//                conn = DriverManager.getConnection(
+//                        "jdbc:mysql://localhost:3306/oop?"
+//                        + "user=root&password=Since 1996&useSSL=false");
+//            } catch (SQLException ex) {
+//                System.out.println("SQLException: " + ex.getMessage());
+//                System.out.println("SQLState: " + ex.getSQLState());
+//                System.out.println("VendorError: " + ex.getErrorCode());
+//            }
+//        }
+//    }
 
     /**
      * Lấy toàn bộ câu hỏi tự luận theo môn học
@@ -519,10 +536,10 @@ public class Database {
         return true;
     }
 
-    public static void main(String[] args) {
-        initialize();
-        EssayQuestion q = new EssayQuestion();
-        q.setId(1);
-        System.out.println(deleteQuestion(q));
-    }
+//    public static void main(String[] args) {
+//        initialize();
+//        EssayQuestion q = new EssayQuestion();
+//        q.setId(1);
+//        System.out.println(deleteQuestion(q));
+//    }
 }

@@ -10,6 +10,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
 
 /**
@@ -17,15 +19,14 @@ import javafx.stage.Stage;
  * @author ducnh
  */
 public class Main extends Application {
-    
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
+        AuthenticateDialog auth = new AuthenticateDialog();
+        HBox.setHgrow(auth, Priority.ALWAYS);
         
-        Scene scene = new Scene(root);
         stage.setTitle("Test Creator");
         stage.getIcons().add(new Image("gui/assets/icon.png"));
-        stage.setScene(scene);
+        stage.setScene(new Scene(auth));
         stage.show();
     }
 
@@ -35,5 +36,4 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
 }

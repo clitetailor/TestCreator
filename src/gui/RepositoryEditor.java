@@ -41,7 +41,6 @@ public class RepositoryEditor extends HBox {
             this.updateContent();
         });
         
-        Database.initialize();
         this.questionSearchBox.setSubjects(Database.getAllSubjects());
         
         this.questionSearchBox.setOnSearchButtonClick((event) -> {

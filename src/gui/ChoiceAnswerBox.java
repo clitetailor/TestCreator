@@ -34,6 +34,18 @@ public class ChoiceAnswerBox extends VBox {
         this.setOnDeleteButtonClick((event) -> {
         });
     }
+    
+    public ChoiceAnswerBox(ChoiceAnswer answer) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ChoiceAnswerBox.fxml"));
+        loader.setRoot(this);
+        loader.setController(this);
+
+        loader.load();
+
+        this.setOnDeleteButtonClick((event) -> {
+        });
+        this.setAnswer(answer);
+    }
 
     @FXML
     private Button trueFalseButton;
@@ -53,11 +65,16 @@ public class ChoiceAnswerBox extends VBox {
     }
 
     private final ObjectProperty<EventHandler<ActionEvent>> propertyOnDeleteButtonClick = new SimpleObjectProperty<EventHandler<ActionEvent>>();
-
+    private final ObjectProperty<EventHandler<ActionEvent>> propertyOnTagButtonClick = new SimpleObjectProperty<EventHandler<ActionEvent>>();
+    
     public void setOnDeleteButtonClick(EventHandler<ActionEvent> handler) {
         this.propertyOnDeleteButtonClick.set(handler);
     }
 
+    public void setOnTagButtonClick(EventHandler<ActionEvent> handler) {
+        this.propertyOnTagButtonClick.set(handler);
+    }
+    
     @FXML
     private void onDeleteButtonClick(ActionEvent event) {
         this.propertyOnDeleteButtonClick.get().handle(event);
@@ -70,6 +87,7 @@ public class ChoiceAnswerBox extends VBox {
         } else {
             this.trueFalseButton.setText("true");
         }
+        this.propertyOnTagButtonClick.get().handle(event);
     }
 
     public void setAnswer(ChoiceAnswer answer) {
